@@ -23,6 +23,8 @@
 
 ## shinbitanori
 
+* [ていうかじゃあ短歌することに何の意味があるんですか](shinbitanori/nb9fff69943f5.md)
+* [意味のない短歌にそれでも意味はあるか](shinbitanori/n42757e1ee453.md)
 * [「雑魚ポエジー」をめぐる冒険](shinbitanori/nd842ea48678f.md)
 * [短い雑感](shinbitanori/n708e91b86311.md)
 * [ゆるく生きる果てに確かな希望なんかない](shinbitanori/n10d1839babe6.md)

@@ -29,5 +29,5 @@
 * [短い雑感](shinabitanori/n708e91b86311.md)
 * [ゆるく生きる果てに確かな希望なんかない](shinabitanori/n10d1839babe6.md)
 * [とある短歌の限界事例（ミスリード）](shinabitanori/nae5fe90f17d7.md)
-* [俺たちのクソゲーな日常は今日も恙なくつまらない](shinabitanori/tachinokusognahamonakutsumaranai.md)
+* [俺たちのクソゲーな日常は今日も恙なくつまらない](shinabitanori/nbd3a2f9b85a1.md)
 

@@ -8,3 +8,7 @@
 * [ゴリラにはゴリラの孤独ありぬべく](aquarium/nfe7f3c14d280.md)
 * [語ることと映える短歌](aquarium/nd8e25452367f.md)
 
+## shinabitanori
+
+* [短歌するための演劇論](shinabitanori/ndbaad0ef9b53.md)
+

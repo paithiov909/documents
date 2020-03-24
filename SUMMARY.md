@@ -10,6 +10,7 @@
 
 ## Lyrical
 
+* [あなたは、どうお考えですか](lyrical/n8c56f287d47d.md)
 * [短歌条例と短歌の境界](lyrical/n4c2b3e09c624.md)
 * [歌評はなぜ難しいのか](lyrical/ne7ab388b100f.md)
 * [花水木の歌の意味論](lyrical/n62d6a77ba260.md)

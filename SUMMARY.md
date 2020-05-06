@@ -25,6 +25,7 @@
 
 ## shinabitanori
 
+* [解題としての小峰さちこ](shinabitanori/toshitenosachiko.md)
 * [ていうかじゃあ短歌することに何の意味があるんですか](shinabitanori/nb9fff69943f5.md)
 * [意味のない短歌にそれでも意味はあるか](shinabitanori/n42757e1ee453.md)
 * [「雑魚ポエジー」をめぐる冒険](shinabitanori/nd842ea48678f.md)

@@ -38,4 +38,5 @@
 ## paithiov
 
 * [ことばの意味と比喩と詩情のかかわり](paithiov/n4135f0b05ef0.md)
+* [障害としてのジェンダーロール](paithiov/toshitenojendrru.md)
 

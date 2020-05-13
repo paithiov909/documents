@@ -25,6 +25,7 @@
 
 ## shinabitanori
 
+* [短歌におけるテキストマイニングとその展望](shinabitanori/nf19cfadb06bc.md)
 * [解題としての小峰さちこ](shinabitanori/na40ed6bf43f5.md)
 * [ていうかじゃあ短歌することに何の意味があるんですか](shinabitanori/nb9fff69943f5.md)
 * [意味のない短歌にそれでも意味はあるか](shinabitanori/n42757e1ee453.md)

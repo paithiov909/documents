@@ -38,5 +38,6 @@
 ## paithiov
 
 * [ことばの意味と比喩と詩情のかかわり](paithiov/n4135f0b05ef0.md)
+* [「生きずらさ」をわかちあえないことの「生きづらさ」](paithiov/n92c1f4997f3f.md)
 * [障害としてのジェンダーロール](paithiov/nd298976ac5be.md)
 

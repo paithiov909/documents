@@ -35,3 +35,7 @@
 * [とある短歌の限界事例（ミスリード）](shinabitanori/nae5fe90f17d7.md)
 * [俺たちのクソゲーな日常は今日も恙なくつまらない](shinabitanori/nbd3a2f9b85a1.md)
 
+## paithiov
+
+* [ことばの意味と比喩と詩情のかかわり](paithiov/n4135f0b05ef0.md)
+

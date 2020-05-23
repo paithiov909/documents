@@ -1,9 +1,11 @@
 ---
-title: RからCaboChaを呼ぶだけのパッケージ書いた
-tags: R 自然言語処理 Cabocha GoogleColaboratory
-author: paithiov909
-slide: false
+ID: 1534fafbbc1d7aef6d6b
+Title: RからCaboChaを呼ぶだけのパッケージ書いた
+Tags: R,自然言語処理,Cabocha,GoogleColaboratory
+Author: Kato Akiru
+Private: false
 ---
+
 ## これは何？
 
 RからCaboChaを呼ぶためのRパッケージ。`system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないため大規模に実行するには不向きだが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。mecabrcは渡せるようにした気がする。
@@ -225,5 +227,4 @@ pipian::CabochaR(res2)$as.tibble()
 CaboChaが出力するXMLはそのままではパースできないので、適当なルートノードを追記する必要がある。
 
 - [CaboChaによってXMLで出力されたファイルをパースする。 – gepuroの日記](http://d.hatena.ne.jp/gepuro/20111014/1318610472)
-
 

@@ -41,3 +41,18 @@
 * [「生きずらさ」をわかちあえないことの「生きづらさ」](paithiov/n92c1f4997f3f.md)
 * [障害としてのジェンダーロール](paithiov/nd298976ac5be.md)
 
+## qiita
+
+* [Generation of Unique ID in R](qiita/0aeec9064b37151c7c18.md)
+* [オレオレおすすめRパッケージリスト](qiita/10e2aa79982a974f9d6d.md)
+* [CaboChaを呼ぶRパッケージをTravisCIでテストする](qiita/11ed913c21e95685ba7a.md)
+* [RからCaboChaを呼ぶだけのパッケージ書いた](qiita/1534fafbbc1d7aef6d6b.md)
+* [恋ということばを使っていないが恋に関心がありそうな歌詞を抽出したい](qiita/2430ddd59418ce3341da.md)
+* [Rから（rJava経由で）MeCabを呼ぶ話](qiita/03087bb40e180bdf9c2a.md)
+* [日本語の「嬉しい」と英語の「happy」の違いを考えるみたいな話](qiita/8205df2816b7dc8c60e6.md)
+* [Rで言語処理100本ノックを解くわけがない（前半）](qiita/258876b77a47c7783250.md)
+* [APIが公開されていないサービスのAPIもどきを爆速でつくって叩いてみる](qiita/944500d35d34f025d4f8.md)
+* [RでfastTextの可視化](qiita/38628467e88082845255.md)
+* [Rによるテキスト解析](qiita/a47a097836e8a9ec12ef.md)
+* [Rでdoc2vecしたい](qiita/d02d65dc9545e6a05968.md)
+

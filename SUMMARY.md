@@ -10,6 +10,8 @@
 
 ## Lyrical
 
+* [短歌時評のテキスト解析](lyrical/nfbcb659d6134.md)
+* [短歌「にする」という言語行為](lyrical/n5dba55f5215c.md)
 * [あなたは、どうお考えですか](lyrical/n8c56f287d47d.md)
 * [短歌条例と短歌の境界](lyrical/n4c2b3e09c624.md)
 * [歌評はなぜ難しいのか](lyrical/ne7ab388b100f.md)
@@ -40,3 +42,4 @@
 * [ことばの意味と比喩と詩情のかかわり](paithiov/n4135f0b05ef0.md)
 * [「生きずらさ」をわかちあえないことの「生きづらさ」](paithiov/n92c1f4997f3f.md)
 * [障害としてのジェンダーロール](paithiov/nd298976ac5be.md)
+

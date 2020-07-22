@@ -6,6 +6,8 @@ Author: Kato Akiru
 Private: false
 ---
 
+[自然言語処理 #2 Advent Calendar2019](https://qiita.com/advent-calendar/2019/nlp2) 23日目です。
+
 ## これは何？
 
 RからCaboChaを呼ぶためのRパッケージ。`system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。mecabrcは渡せるようにした気がする。

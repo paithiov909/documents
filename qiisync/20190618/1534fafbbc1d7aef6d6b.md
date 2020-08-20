@@ -8,11 +8,16 @@ Private: false
 
 [自然言語処理 #2 Advent Calendar2019](https://qiita.com/advent-calendar/2019/nlp2) 23日目です。
 
+- [Tiny Interface to CaboCha for R • pipian](https://paithiov909.github.io/pipian/)
+- [paithiov909/pipian: Tiny Interface to CaboCha for R](https://github.com/paithiov909/pipian)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/paithiov909/pipian)](#) [![Build Status](https://travis-ci.org/paithiov909/pipian.svg?branch=master)](https://travis-ci.org/paithiov909/pipian)
+
+<!-- About pipian package -->
+
 ## これは何？
 
-RからCaboChaを呼ぶためのRパッケージ。`system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。mecabrcは渡せるようにした気がする。
-
->  [paithiov909/pipian: Tiny Interface to CaboCha](https://github.com/paithiov909/pipian)
+RからCaboChaを呼ぶためのRパッケージ。`base::system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。mecabrcは渡せるようにした気がする。
 
 これで使えるようになる。
 
@@ -129,6 +134,8 @@ res$as_tibble()
 #> #   Original <chr>, Yomi1 <chr>, Yomi2 <chr>
 ```
 
+<!-- Setup for Google Colaboratory -->
+
 ## Google Colaboratoryで試すやり方
 
 Google Colaboratory上で試すことができる。
@@ -210,6 +217,8 @@ res$tbl
 #> 2 1     -1    0.000000 動くよ  
 ```
 
+<!-- About pipian package -->
+
 ## 参考にしたはずの記事
 
 ### igraph
@@ -228,9 +237,8 @@ res$tbl
 
 ### CaboCha
 
-- [CaboChaで始める係り受け解析 - Qiita](https://qiita.com/nezuq/items/f481f07fc0576b38e81d)
-
 CaboChaが出力するXMLはそのままではパースできないので、適当なルートノードを追記する必要がある。
 
+- [CaboChaで始める係り受け解析 - Qiita](https://qiita.com/nezuq/items/f481f07fc0576b38e81d)
 - [CaboChaによってXMLで出力されたファイルをパースする。 – gepuroの日記](http://d.hatena.ne.jp/gepuro/20111014/1318610472)
 

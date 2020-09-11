@@ -13,6 +13,7 @@
 
 ## shinabitanori
 
+* [青松輝（ベテランち）の短歌の読み方](shinabitanori/n35aa206d5915.md)
 * [リアクションとしての一首評](shinabitanori/nc9e09e74ed78.md)
 * [短歌時評のテキスト解析](shinabitanori/nfbcb659d6134.md)
 * [短歌におけるテキストマイニングとその展望](shinabitanori/nf19cfadb06bc.md)

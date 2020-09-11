@@ -13,6 +13,7 @@
 
 ## shinabitanori
 
+* [リアクションとしての一首評](shinabitanori/nc9e09e74ed78.md)
 * [短歌時評のテキスト解析](shinabitanori/nfbcb659d6134.md)
 * [短歌におけるテキストマイニングとその展望](shinabitanori/nf19cfadb06bc.md)
 * [あなたは、どうお考えですか](shinabitanori/n8c56f287d47d.md)

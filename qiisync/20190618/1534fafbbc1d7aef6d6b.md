@@ -8,16 +8,13 @@ Private: false
 
 [自然言語処理 #2 Advent Calendar2019](https://qiita.com/advent-calendar/2019/nlp2) 23日目です。
 
-- [Tiny Interface to CaboCha for R • pipian](https://paithiov909.github.io/pipian/)
-- [paithiov909/pipian: Tiny Interface to CaboCha for R](https://github.com/paithiov909/pipian)
-
-[![GitHub last commit](https://img.shields.io/github/last-commit/paithiov909/pipian)](#) [![Build Status](https://travis-ci.org/paithiov909/pipian.svg?branch=master)](https://travis-ci.org/paithiov909/pipian)
+- [Tiny Interface to CaboCha for R • pipian](https://paithiov909.github.io/pipian/index.html)
 
 <!-- About pipian package -->
 
 ## これは何？
 
-RからCaboChaを呼ぶためのRパッケージ。`base::system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。mecabrcは渡せるようにした気がする。
+RからCaboChaを呼ぶためのRパッケージ。`base::system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。外部コマンドとして叩くだけなので、Windows環境で64bit Rから32bit CaboChaを実行する場合でも問題なく動作する。
 
 これで使えるようになる。
 
@@ -76,7 +73,7 @@ head(pipian::cabochaFlatXML("ふと振り向くと、たくさんの味方がい
 `pipian::cabochaFlatXML(as.tibble = FALSE)`で出力したflat XMLをtibbleに整形できる。このtibbleは[CabochaR](https://minowalab.org/cabochar/)が出力する形式を参考にしたもので、次のカラムからなる。
 
 - sentence_idx: 文番号
-- chunk_idx: 文節のインデックス.
+- chunk_idx: 文節のインデックス
 - D1: 文節番号
 - D2: 係り先の文節の文節番号
 - rel:（よくわからない値）

@@ -1,0 +1,291 @@
+---
+title: 準備運動・UNIXコマンド・正規表現
+author: paithiov909
+date: '2020-07-11'
+lastmod: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  tidy = "styler",
+  collapse = TRUE,
+  comment = "#>"
+)
+stopifnot(require(tidyverse))
+```
+
+## 全体の見通し
+
+2020年版に触ってみますが、ぜんぶは解きません。無理です。
+
+- [言語処理100本ノック 2020](https://nlp100.github.io/ja/)
+
+ググって出てくる範囲では2015年版にはyamano357さんが取り組んでいます。RcppでMeCabとCaboChaのバインディングを自分で書いて解いている本格派です。
+
+- [Rによる言語処理100本ノック前半まとめ - バイアスと戯れる](http://yamano357.hatenadiary.com/entry/2015/07/27/001728)
+- [Rによる言語処理100本ノック後半まとめと全体での総括 - バイアスと戯れる](http://yamano357.hatenadiary.com/entry/2015/10/22/193839)
+
+2020年版もやろうとしている人がいるようです。
+
+- [言語処理100本ノック R - Qiita](https://qiita.com/PiyoMoasa/items/7c1a6cca3f9cbcaf7773)
+
+2020年版も7章の単語ベクトルあたりまではPure Rでいけそうですが、おそらく8章のディープ・ニューラルネットあたりからバックエンドにPythonを利用することになり、10章の最終題の翻訳デモの構築でふつうにPythonを利用しなければならなくなるはずなので詰みます。
+
+
+## 準備運動
+
+コーディングの方針として、値はなるべくリストのまま持っておいて最後に`unlist`する感じにしています。あと、`paste`ではなくて`stringr::str_c`で統一しています。
+
+### 00. 文字列の逆順
+
+```{r}
+stringr::str_split("stressed", pattern = "") %>%
+    purrr::map(~ rev(.)) %>%
+    unlist() %>%
+    stringr::str_c(collapse = "")
+```
+
+### 01. 「パタトクカシーー」
+
+```{r}
+stringr::str_split("パタトクカシーー", pattern = "") %>%
+    purrr::map(~ purrr::pluck(.[c(TRUE, FALSE)])) %>%
+    unlist() %>%
+    stringr::str_c(collapse = "")
+```
+
+### 02. 「パトカー」＋「タクシー」＝「パタトクカシーー」
+
+```{r}
+list("パトカー", "タクシー") %>%
+    purrr::map(~ stringr::str_split(., pattern = "")) %>%
+    purrr::flatten() %>%
+    purrr::pmap(~ stringr::str_c(.x, .y, collapse = "")) %>%
+    unlist() %>%
+    stringr::str_c(collapse = "")
+```
+
+### 03. 円周率
+
+```{r}
+stringr::str_split("Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.", pattern = " ") %>%
+    purrr::flatten() %>%
+    purrr::map(~ stringr::str_count(., pattern = "[:alpha:]")) %>%
+    unlist()
+```
+
+### 04. 元素記号
+
+```{r}
+stringr::str_split("Hi He Lied Because Boron Could Not Oxidize Fluorine. New Nations Might Also Sign Peace Security Clause. Arthur King Can.", pattern = " ") %>%
+  purrr::flatten() %>%
+  purrr::imap(~
+    dplyr::if_else(.y %in% c(1, 5, 6, 7, 8, 9, 15, 16, 19), 
+      stringr::str_sub(.x, 1, 1),
+      stringr::str_sub(.x, 1, 2)
+    )
+  ) %>%
+  purrr::imap(function(x, i) {
+    names(x) <- i
+    return(x)
+  }) %>%
+  unlist()
+```
+
+### 05. n-gram
+
+```{r}
+ngram <- function(x, n = 2, sep = " "){
+
+    stopifnot(is.character(x))
+    #### 先例がみんな`embed`を使っているが、ここでは使わない ####
+
+    tokens <- unlist(stringr::str_split(x, pattern = sep))
+    len <- length(tokens)
+
+    if (len < n) {
+      res <- character(0)
+    } else {
+      res <- sapply(1:max(1, len - n + 1), function(i) {
+        stringr::str_c(tokens[i:min(len, i + n - 1)], collapse = " ")
+      })
+    }
+
+    return(res)
+}
+ngram("I am an NLPer")
+```
+
+### 06. 集合
+
+回答略
+
+### 07. テンプレートによる文生成
+
+回答略
+
+### 08. 暗号文
+
+```{r}
+cipher <- function(str){
+  f <- purrr::as_mapper(~ 219 - .)
+  v <- stringr::str_split(str, pattern = "", simplify = TRUE)
+  res <- sapply(v[1, ], function(char){
+    dplyr::if_else(stringr::str_detect(char, "[:lower:]"),
+      char %>%
+        charToRaw() %>%
+        as.integer() %>%
+        f() %>%
+        as.raw() %>%
+        rawToChar(),
+      char
+    )
+  })
+  return(stringr::str_c(res, collapse = ""))
+}
+cipher("I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind.")
+```
+
+### 09. Typoglycemia
+
+```{r}
+typoglycemia <- function(str){
+  f <- function(char){
+    subset <- stringr::str_sub(char, 2, nchar(char) - 1) %>%
+      stringr::str_split(pattern = "") %>%
+      purrr::flatten() %>%
+      sample()
+    res <- stringr::str_c(
+      c(
+        stringr::str_sub(char, 1, 1),
+        subset,
+        stringr::str_sub(char, nchar(char), nchar(char))
+      ),
+      collapse = ""
+    )
+    return(res)
+  }
+  res <- stringr::str_split(str, pattern = " ") %>%
+    purrr::flatten() %>%
+    purrr::map(~
+      dplyr::if_else(nchar(stringr::str_subset(., "[:alpha:]|:")) <= 4,
+        .,
+        f(.)
+      )
+    )
+  return(stringr::str_c(res, collapse = " "))
+}
+typoglycemia("I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind.")
+```
+
+## UNIXコマンド
+
+確認はやりません。~~だってWindowsだもん~~
+
+### 10~15
+
+素のテキストとして読んでもしょうがないので、以下のようなこと雰囲気でやります。
+
+- 10. 行数のカウント
+- 11. タブをスペースに置換
+- 14. 先頭からN行を出力
+- 15. 末尾のN行を出力
+
+以下の２つはやりませんが、たぶん`fread(temp, select = c(1, 2))`みたいな感じで取れます。
+
+- 12. 1列目をcol1.txtに，2列目をcol2.txtに保存
+- 13. col1.txtとcol2.txtをマージ
+
+```{r}
+temp <- tempfile(fileext = ".txt")
+download.file("https://nlp100.github.io/data/popular-names.txt", temp)
+txt <- temp %>%
+  data.table::fread(
+    sep = "\t",
+    quote = "",
+    header = FALSE,
+    col.names = c("name", "sex", "num_of_people", "year"),
+    colClasses = list("character" = 1, "character" = 2, "integer" = 3, "integer" = 4),
+    data.table = FALSE
+  )
+
+nrow(txt)
+```
+
+```{r}
+head(txt, 3)
+```
+
+```{r}
+tail(txt, 3)
+```
+
+### 16. ファイルをN分割する
+
+```{r}
+split(txt, sort(rank(row.names(txt)) %% 5)) %>%
+  purrr::map(~ head(.)) %>%
+  print()
+```
+
+### 17. １列目の文字列の異なり
+
+省略
+
+### 18. 各行を3コラム目の数値の降順にソート
+
+```{r}
+txt %>%
+  arrange(desc(num_of_people)) %>%
+  head()
+```
+
+### 19. 各行の1コラム目の文字列の出現頻度を求め，出現頻度の高い順に並べる
+
+```{r}
+purrr::map_dfr(txt$name, function(name){
+  stringr::str_split(name, pattern = "", simplify = TRUE) %>%
+    t() %>%
+    as.data.frame(stringsAsFactors = FALSE)
+}) %>%
+  dplyr::rename(string = V1) %>%
+  dplyr::group_by(string) %>%
+  dplyr::count(string, sort = TRUE) %>%
+  head()
+```
+
+## 正規表現
+
+自然言語処理とはいったい
+
+### 20. JSONデータの読み込み
+
+```{r}
+temp <- tempfile(fileext = ".gz")
+download.file("https://nlp100.github.io/data/jawiki-country.json.gz", temp)
+con <- gzfile(description = temp, open = "rb", encoding = "UTF-8")
+jsonfile <- readr::read_lines(con) %>%
+  purrr::map_dfr(~
+    jsonlite::fromJSON(.)
+  )
+close(con)
+
+jsonfile %>%
+  dplyr::filter(title == "イギリス") %>%
+  dplyr::pull(text) %>%
+  glimpse() ## 長いので
+```
+
+### 21. カテゴリ名を含む行を抽出
+
+```{r}
+lines <- jsonfile %>%
+  dplyr::filter(title == "イギリス") %>%
+  dplyr::pull(text) %>%
+  readr::read_lines() %>%
+  stringr::str_subset(stringr::fixed("[[Category:"))
+lines
+```
+
+以下、回答略
+

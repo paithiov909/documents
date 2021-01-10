@@ -3,7 +3,7 @@ ID: ac85bed52aedb20b3ab4
 Title: スプレッドシートをJSONにして配信するGASのスニペット
 Tags: gas
 Author: Kato Akiru
-Private: true
+Private: false
 ---
 
 ## 手順
@@ -33,7 +33,7 @@ function getData() {
   });
   const trim = whole.filter(row => row.id !== "");
   const data = trim.reverse();
-  return data.slice(0, 30); // 30首だけ
+  return data.slice(0, 30); // 30行だけ
 }
 
 function doGet() {

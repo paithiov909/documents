@@ -6,19 +6,18 @@ Author: Kato Akiru
 Private: false
 ---
 
+
 [自然言語処理 #2 Advent Calendar2019](https://qiita.com/advent-calendar/2019/nlp2) 23日目です。
 
-- [Tiny Interface to CaboCha for R • pipian](https://paithiov909.github.io/pipian/index.html)
-
-<!-- About pipian package -->
+[![paithiov909/pipian - GitHub](https://gh-card.dev/repos/paithiov909/pipian.svg)](https://github.com/paithiov909/pipian)
 
 ## これは何？
 
-RからCaboChaを呼ぶためのRパッケージ。`base::system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。外部コマンドとして叩くだけなので、Windows環境で64bit Rから32bit CaboChaを実行する場合でも問題なく動作する。
+RからCaboChaを呼ぶためのライブラリ。`base::system()`から`cabocha -f3`コマンドを呼んで出力した一時ファイル（XML）を読みに行っている。Rcpp経由ではないためとくに速くはないが、CaboChaとMeCabのパスが通っていれば使えるはずなので導入は楽。**外部コマンドとして叩くだけなので、Windows環境で64bit Rから32bit CaboChaを実行する場合でも問題なく動作する。**
 
 これで使えるようになる。
 
-```R
+``` r
 remotes::install_github("paithiov909/pipian")
 ```
 
@@ -30,8 +29,11 @@ remotes::install_github("paithiov909/pipian")
 
 ### XML出力のパース
 
-```{usage1.R}
-res <- pipian::CabochaTbl("ふと振り向くと、たくさんの味方がいてたくさんの優しい人間がいることを、わざわざ自分の誕生日が来ないと気付けない自分を奮い立たせながらも、毎日こんな、湖のようななんの引っ掛かりもない、落ちつき倒し、音一つも感じさせない人間でいれる方に憧れを持てたとある25歳の眩しき朝のことでした")
+
+```r
+## ここではUTF-8のIPA辞書を使っています
+text <- stringi::stri_enc_toutf8("ふと振り向くと、たくさんの味方がいてたくさんの優しい人間がいることを、わざわざ自分の誕生日が来ないと気付けない自分を奮い立たせながらも、毎日こんな、湖のようななんの引っ掛かりもない、落ちつき倒し、音一つも感じさせない人間でいれる方に憧れを持てたとある25歳の眩しき朝のことでした")
+res <- pipian::CabochaTbl(text, force.utf8 = TRUE)
 res$tbl
 #> # A tibble: 37 x 4
 #>    id    link  score     morphs      
@@ -57,8 +59,9 @@ res$tbl
 
 XMLを`flatxml::fxml_importXMLFlat()`で読み込んだflat XMLを返すことができる。
 
-```{usage2.R}
-head(pipian::cabochaFlatXML("ふと振り向くと、たくさんの味方がいてたくさんの優しい人間がいることを、わざわざ自分の誕生日が来ないと気付けない自分を奮い立たせながらも、毎日こんな、湖のようななんの引っ掛かりもない、落ちつき倒し、音一つも感じさせない人間でいれる方に憧れを持てたとある25歳の眩しき朝のことでした"))
+
+```r
+head(pipian::cabochaFlatXML(text, force.utf8 = TRUE))
 #>       elem. elemid. attr. value.    level1   level2 level3 level4
 #> 1 sentences       1  <NA>   <NA> sentences     <NA>   <NA>   <NA>
 #> 2  sentence       2  <NA>   <NA> sentences sentence   <NA>   <NA>
@@ -70,7 +73,7 @@ head(pipian::cabochaFlatXML("ふと振り向くと、たくさんの味方がい
 
 ### flat XMLの整形
 
-`pipian::cabochaFlatXML(as.tibble = FALSE)`で出力したflat XMLをtibbleに整形できる。このtibbleは[CabochaR](https://minowalab.org/cabochar/)が出力する形式を参考にしたもので、次のカラムからなる。
+`pipian::cabochaFlatXML(as.tibble = FALSE)`で出力したflat XMLをtibbleに整形できる（IPA辞書と同じ品詞体系の場合にかぎる）。このtibbleは[CabochaR](https://minowalab.org/cabochar/)が出力する形式を参考にしたもので、次のカラムからなる。
 
 - sentence_idx: 文番号
 - chunk_idx: 文節のインデックス
@@ -82,56 +85,36 @@ head(pipian::cabochaFlatXML("ふと振り向くと、たくさんの味方がい
 - func: 機能語の形態素の番号
 - tok_idx: 形態素の番号
 - ne_value: 固有表現解析の結果の値（`-n 1`オプションを使用している）
-- word: 表層形
+- Surface: 表層形
 - POS1~POS4: 品詞, 品詞細分類1, 品詞細分類2, 品詞細分類3
-- X5StageUse1: 活用形
-- X5StageUse2: 活用型
+- X5StageUse1: 活用型（五段, 下二段...）
+- X5StageUse2: 活用形（連用形, 基本形...）
 - Original: 原形
 - Yomi1~Yomi2: 読み, 発音
 
-```{usage3.R}
-library(magrittr)
-res <- pipian::cabochaFlatXML("ふと振り向くと、たくさんの味方がいてたくさんの優しい人間がいることを、わざわざ自分の誕生日が来ないと気付けない自分を奮い立たせながらも、毎日こんな、湖のようななんの引っ掛かりもない、落ちつき倒し、音一つも感じさせない人間でいれる方に憧れを持てたとある25歳の眩しき朝のことでした") %>%
-  pipian::CabochaR()
 
-res$morphs[[1]]
-#> # A tibble: 78 x 21
-#>   chunk_idx tok_idx ne_value word  POS1  POS2  POS3  POS4  X5StageUse1 X5StageUse2
-#>       <dbl>  <dbl> <chr>    <chr> <chr> <chr> <chr> <chr> <chr>       <chr>      
-#>  1        3      0 O        ふと  副詞  一般  *     *     *           *          
-#>  2        5      1 O        振り向く~ 動詞  自立  *     *     五段・カ行イ音便~ 基本形     
-#>  3        5      2 O        と    助詞  接続助詞~ *     *     *           *          
-#>  4        5      3 O        、    記号  読点  *     *     *           *          
-#>  5        9      4 O        たくさん~ 名詞  副詞可能~ *     *     *           *          
-#>  6        9      5 O        の    助詞  連体化~ *     *     *           *          
-#>  7       12      6 O        味方  名詞  サ変接続~ *     *     *           *          
-#>  8       12      7 O        が    助詞  格助詞~ 一般  *     *           *          
-#>  9       15      8 O        い    動詞  自立  *     *     一段        連用形     
-#> 10       15      9 O        て    助詞  接続助詞~ *     *     *           *          
-#> # ... with 68 more rows, and 11 more variables: Original <chr>, Yomi1 <chr>,
-#> #   Yomi2 <chr>, sentence_id <int>, chunk_id1 <dbl>, D1 <dbl>, D2 <dbl>, rel <chr>,
-#> #   score <dbl>, head <dbl>, func <dbl>
+```r
+res <- pipian::cabochaFlatXML(text, force.utf8 = TRUE) %>%
+  pipian::CabochaR()
 
 res$as_tibble()
 #> # A tibble: 78 x 20
-#>    sentence_idx chunk_idx D1    D2    rel   score head  func  tok_idx ne_value
-#>           <int>     <dbl> <chr> <chr> <chr> <chr> <chr> <chr>   <dbl> <chr>   
-#>  1            1         3 0     1     D     1.28~ 0     0           0 O       
-#>  2            1         5 1     36    D     -2.3~ 1     2           1 O       
-#>  3            1         5 1     36    D     -2.3~ 1     2           2 O       
-#>  4            1         5 1     36    D     -2.3~ 1     2           3 O       
-#>  5            1         9 2     3     D     1.92~ 4     5           4 O       
-#>  6            1         9 2     3     D     1.92~ 4     5           5 O       
-#>  7            1        12 3     4     D     0.83~ 6     7           6 O       
-#>  8            1        12 3     4     D     0.83~ 6     7           7 O       
-#>  9            1        15 4     8     D     2.02~ 8     9           8 O       
-#> 10            1        15 4     8     D     2.02~ 8     9           9 O       
-#> # ... with 68 more rows, and 10 more variables: word <chr>, POS1 <chr>,
-#> #   POS2 <chr>, POS3 <chr>, POS4 <chr>, X5StageUse1 <chr>, X5StageUse2 <chr>,
-#> #   Original <chr>, Yomi1 <chr>, Yomi2 <chr>
+#>    sentence_idx chunk_idx D1    D2    rel   score head  func  tok_idx ne_value Surface
+#>           <int>     <dbl> <chr> <chr> <chr> <chr> <chr> <chr>   <dbl> <chr>    <chr>  
+#>  1            1         3 0     1     D     1.28~ 0     0           0 O        ふと   
+#>  2            1         5 1     36    D     -2.3~ 1     2           1 O        振り向く~
+#>  3            1         5 1     36    D     -2.3~ 1     2           2 O        と     
+#>  4            1         5 1     36    D     -2.3~ 1     2           3 O        、     
+#>  5            1         9 2     3     D     1.92~ 4     5           4 O        たくさん~
+#>  6            1         9 2     3     D     1.92~ 4     5           5 O        の     
+#>  7            1        12 3     4     D     0.83~ 6     7           6 O        味方   
+#>  8            1        12 3     4     D     0.83~ 6     7           7 O        が     
+#>  9            1        15 4     8     D     2.02~ 8     9           8 O        い     
+#> 10            1        15 4     8     D     2.02~ 8     9           9 O        て     
+#> # ... with 68 more rows, and 9 more variables: POS1 <chr>, POS2 <chr>, POS3 <chr>,
+#> #   POS4 <chr>, X5StageUse1 <chr>, X5StageUse2 <chr>, Original <chr>, Yomi1 <chr>,
+#> #   Yomi2 <chr>
 ```
-
-<!-- Setup for Google Colaboratory -->
 
 ## Google Colaboratoryで試すやり方
 
@@ -151,7 +134,6 @@ apt install mecab libmecab-dev mecab-ipadic-utf8
 次にCRFを入れる。
 
 ``` bash
-%%bash
 wget "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7QVR6VXJ5dWExSTQ" -O CRF++-0.58.tar.gz
 tar -zxvf CRF++-0.58.tar.gz CRF++-0.58/
 cd CRF++-0.58/
@@ -176,7 +158,7 @@ url = f'https://drive.google.com/uc?export=download&confirm={code}&id=0B4y35FiV1
 !curl -Lb /tmp/cookie "$url" -o cabocha-0.69.tar.bz2
 !tar -jxvf cabocha-0.69.tar.bz2 cabocha-0.69/
 %cd cabocha-0.69/
-!./configure --with-mecab-config=`which mecab-config` --with-charset=UTF8
+!./configure --with-mecab-config=`which mecab-config` --with-charset=UTF8 --enable-utf8-only
 !make
 !make check
 !make install
@@ -184,7 +166,7 @@ url = f'https://drive.google.com/uc?export=download&confirm={code}&id=0B4y35FiV1
 %cd ../
 ```
 
-### {pipian}のインストール
+### pipianのインストール
 
 rpy2経由でRを使えるようにする。
 
@@ -192,14 +174,12 @@ rpy2経由でRを使えるようにする。
 %load_ext rpy2.ipython
 ```
 
-{pipian}を入れる。
+pipianを入れる。
 
 ``` r
 %%R
 remotes::install_github("paithiov909/pipian")
 ```
-
-### 使用例
 
 使用例。なお、これで`res$plot()`するとigraphを利用して係り受けを図示できるが、Colabは日本語フォントがない環境なのでうまく表示されない。図示したい場合は、日本語フォントを入れたうえで、`res$tbl2graph()`の戻り値であるigraphオブジェクトを利用するなどして自分で頑張ってください。
 
@@ -213,8 +193,6 @@ res$tbl
 #> 1 0     1     0.000000 ふつうに
 #> 2 1     -1    0.000000 動くよ  
 ```
-
-<!-- About pipian package -->
 
 ## 参考にしたはずの記事
 
@@ -239,3 +217,92 @@ CaboChaが出力するXMLはそのままではパースできないので、適�
 - [CaboChaで始める係り受け解析 - Qiita](https://qiita.com/nezuq/items/f481f07fc0576b38e81d)
 - [CaboChaによってXMLで出力されたファイルをパースする。 – gepuroの日記](http://d.hatena.ne.jp/gepuro/20111014/1318610472)
 
+## セッション情報
+
+
+```r
+sessioninfo::session_info()
+#> - Session info ------------------------------------------------------------------------
+#>  setting  value                       
+#>  version  R version 4.0.3 (2020-10-10)
+#>  os       Windows 10 x64              
+#>  system   x86_64, mingw32             
+#>  ui       RStudio                     
+#>  language (EN)                        
+#>  collate  Japanese_Japan.932          
+#>  ctype    Japanese_Japan.932          
+#>  tz       Asia/Tokyo                  
+#>  date     2021-01-20                  
+#> 
+#> - Packages ----------------------------------------------------------------------------
+#>  package     * version date       lib source                        
+#>  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)                
+#>  backports     1.2.1   2020-12-09 [1] CRAN (R 4.0.3)                
+#>  callr         3.5.1   2020-10-13 [1] CRAN (R 4.0.3)                
+#>  cli           2.2.0   2020-11-20 [1] CRAN (R 4.0.3)                
+#>  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.2)                
+#>  curl          4.3     2019-12-02 [1] CRAN (R 4.0.2)                
+#>  DBI           1.1.1   2021-01-15 [1] CRAN (R 4.0.3)                
+#>  desc          1.2.0   2018-05-01 [1] CRAN (R 4.0.2)                
+#>  devtools      2.3.2   2020-09-18 [1] CRAN (R 4.0.2)                
+#>  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.3)                
+#>  dplyr         1.0.3   2021-01-15 [1] CRAN (R 4.0.3)                
+#>  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.2)                
+#>  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.2)                
+#>  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.3)                
+#>  flatxml       0.1.1   2020-12-01 [1] CRAN (R 4.0.3)                
+#>  fs            1.5.0   2020-07-31 [1] CRAN (R 4.0.2)                
+#>  generics      0.1.0   2020-10-31 [1] CRAN (R 4.0.3)                
+#>  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                
+#>  hms           1.0.0   2021-01-13 [1] CRAN (R 4.0.3)                
+#>  htmltools     0.5.1   2021-01-12 [1] CRAN (R 4.0.3)                
+#>  httr          1.4.2   2020-07-20 [1] CRAN (R 4.0.2)                
+#>  igraph        1.2.6   2020-10-06 [1] CRAN (R 4.0.3)                
+#>  knitr         1.30    2020-09-22 [1] CRAN (R 4.0.2)                
+#>  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.2)                
+#>  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.3)                
+#>  MASS          7.3-53  2020-09-09 [2] CRAN (R 4.0.3)                
+#>  memoise       1.1.0   2017-04-21 [1] CRAN (R 4.0.2)                
+#>  pillar        1.4.7   2020-11-20 [1] CRAN (R 4.0.3)                
+#>  pipian      * 0.2.4   2021-01-20 [1] local                         
+#>  pkgbuild      1.2.0   2020-12-15 [1] CRAN (R 4.0.3)                
+#>  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.2)                
+#>  pkgdown       1.4.1   2020-09-23 [1] Github (r-lib/pkgdown@cdd8340)
+#>  pkgload       1.1.0   2020-05-29 [1] CRAN (R 4.0.2)                
+#>  prettyunits   1.1.1   2020-01-24 [1] CRAN (R 4.0.2)                
+#>  processx      3.4.5   2020-11-30 [1] CRAN (R 4.0.3)                
+#>  ps            1.5.0   2020-12-05 [1] CRAN (R 4.0.3)                
+#>  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.2)                
+#>  R.cache       0.14.0  2019-12-06 [1] CRAN (R 4.0.2)                
+#>  R.methodsS3   1.8.1   2020-08-26 [1] CRAN (R 4.0.2)                
+#>  R.oo          1.24.0  2020-08-26 [1] CRAN (R 4.0.2)                
+#>  R.utils       2.10.1  2020-08-26 [1] CRAN (R 4.0.2)                
+#>  R6            2.5.0   2020-10-28 [1] CRAN (R 4.0.3)                
+#>  readr         1.4.0   2020-10-05 [1] CRAN (R 4.0.3)                
+#>  rematch2      2.1.2   2020-05-01 [1] CRAN (R 4.0.2)                
+#>  remotes       2.2.0   2020-07-21 [1] CRAN (R 4.0.2)                
+#>  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.3)                
+#>  rmarkdown     2.6     2020-12-14 [1] CRAN (R 4.0.3)                
+#>  rprojroot     2.0.2   2020-11-15 [1] CRAN (R 4.0.3)                
+#>  rsconnect     0.8.16  2019-12-13 [1] CRAN (R 4.0.2)                
+#>  rstudioapi    0.13    2020-11-12 [1] CRAN (R 4.0.3)                
+#>  rvest         0.3.6   2020-07-25 [1] CRAN (R 4.0.2)                
+#>  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                
+#>  stringi     * 1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                
+#>  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                
+#>  styler        1.3.2   2020-02-23 [1] CRAN (R 4.0.2)                
+#>  testthat      3.0.1   2020-12-17 [1] CRAN (R 4.0.3)                
+#>  tibble        3.0.5   2021-01-15 [1] CRAN (R 4.0.3)                
+#>  tidyr         1.1.2   2020-08-27 [1] CRAN (R 4.0.2)                
+#>  tidyselect    1.1.0   2020-05-11 [1] CRAN (R 4.0.2)                
+#>  usethis       2.0.0   2020-12-10 [1] CRAN (R 4.0.3)                
+#>  utf8          1.1.4   2018-05-24 [1] CRAN (R 4.0.2)                
+#>  vctrs         0.3.6   2020-12-17 [1] CRAN (R 4.0.3)                
+#>  withr         2.4.0   2021-01-16 [1] CRAN (R 4.0.3)                
+#>  xfun          0.20    2021-01-06 [1] CRAN (R 4.0.3)                
+#>  xml2          1.3.2   2020-04-23 [1] CRAN (R 4.0.2)                
+#>  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)                
+#> 
+#> [1] C:/Users/user/Documents/R/win-library/4.0
+#> [2] C:/Program Files/R/R-4.0.3/library
+```

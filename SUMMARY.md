@@ -4,6 +4,7 @@
 
 ## aquarium
 
+* [短歌と感情のリアリティ](aquarium/nd31774d74c6d.md)
 * [「エモーショナルきりん」であるとはどのようなことか](aquarium/n15289b8fdb07.md)
 * [斉藤斎藤「予言、〈私〉」の一つの読み](aquarium/nd25f11f8a209.md)
 * [青松輝（ベテランち）の短歌の読み方](aquarium/n35aa206d5915.md)

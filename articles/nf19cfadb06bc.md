@@ -2,10 +2,10 @@
 title: '短歌におけるテキストマイニングとその展望'
 emoji: '✏️'
 type: 'idea'
-topics: []
+topics: ['r','nlp','自然言語処理']
 published: true
 author: 'shinabitanori'
-description: 'https://note.com/shinabitanori/n/nf19cfadb06bc'
+canonical: 'https://note.com/shinabitanori/n/nf19cfadb06bc'
 ---
 
 ## 短歌のテキストマイニング

@@ -5,7 +5,7 @@
 ## Links
 
 - [Blog](https://lyrikuso.netlify.app/)
-- [Docsify on GitHubPages](https://paithiov909.github.io/documents/)
+- [Docsify on GitHub Pages](https://paithiov909.github.io/documents/)
 
 ## Guide
 
@@ -18,7 +18,6 @@
 - YAML front matter sample:
 
 ``` yaml
----
 title: 'Title of the post'
 emoji: '✏️'
 type: 'idea' ## tech or idea
@@ -27,12 +26,18 @@ published: false
 author: ''
 canonical: ''
 description: '' ## optional
----
+```
+
+- Citation style (for tanka poem)
+
+``` json
+はいこちらあきる野市立希望的観測所ですお困りですか
+／さちこ「折本」
 ```
 
 ## License
 
-Copyright \(c\) 2021 LYRICALHANAKUSOAUGUSTA | Kato Akiru and Komine Sachiko.
+Copyright \(c\) 2021 LYRICAL HANAKUSO AUGUSTA | Kato Akiru and Komine Sachiko.
 
 The documents under `articles`, `archived`, `qiisync` and `scripts` are licensed under the CC0 1.0 Universal.
 Other aritcles are distributed under [CC-BY-ND](https://creativecommons.org/licenses/by-nd/4.0/deed.ja).

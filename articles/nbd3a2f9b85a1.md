@@ -1,8 +1,12 @@
 ---
-description: 'https://note.com/shinabitanori/n/nbd3a2f9b85a1'
+title: '俺たちのクソゲーな日常は今日も恙なくつまらない'
+emoji: '✏️'
+type: 'idea'
+topics: []
+published: false
+author: 'shinabitanori'
+canonical: 'https://note.com/shinabitanori/n/nbd3a2f9b85a1'
 ---
-
-# 俺たちのクソゲーな日常は今日も恙なくつまらない
 
 締め切りは人を追い詰める。それは強制スクロールアクションで背後から迫りくる「壁」のようなものだ。締め切りは人を殺しはしない。ただ、追い詰めるだけ。追い詰められた人間はひとりでに焦って自滅していく。死亡サウンドが脳内で鳴る。残機がひとつ減る。ぜんぶ俺が悪い。
 

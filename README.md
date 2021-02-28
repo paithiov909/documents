@@ -1,6 +1,6 @@
 # documents
 
-> backups of documents
+> backups of blog posts
 
 ## Links
 

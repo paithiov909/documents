@@ -4,5 +4,8 @@
   "repository": "https://github.com/paithiov909/documents.git",
   "author": "paithiov909",
   "license": "CC0 1.0 Universal",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "zenn-cli": "^0.1.75"
+  }
 }

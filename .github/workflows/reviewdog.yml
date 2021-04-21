@@ -9,17 +9,17 @@ on: [pull_request]
 jobs:
   reviewdog-github-check:
     name: reviewdog (github-check)
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
         with:
           submodules: true
-      - uses: reviewdog/action-setup@v1
+      - uses: reviewdog/action-setup@v2
         with:
           reviewdog_version: latest
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 15.x
+          node-version: "15"
       - name: cache-node-modules
         uses: pat-s/always-upload-cache@v2.1.3
         env:
@@ -32,7 +32,7 @@ jobs:
       - name: Execute textlint
         continue-on-error: true
         run: |
-           $(npm bin)/textlint --format checkstyle -o '.textlint.log' 'articles/*.md'
+           npx textlint --format checkstyle -o '.textlint.log' 'articles/*.md'
       - name: Review
         if: failure()
         env:

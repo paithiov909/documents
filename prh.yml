@@ -1,5 +1,0 @@
-rules:
-  - expected: MeCab
-    specs:
-      - from: mecab
-        to: MeCab

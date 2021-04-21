@@ -5,7 +5,13 @@
   "author": "paithiov909",
   "license": "CC0 1.0 Universal",
   "private": true,
+  "scripts": {
+    "lint:aquarium": "npx textlint checkstyle 'aquarium/*.md'",
+    "lint:articles": "npx textlint checkstyle 'articles/*.md'"
+  },
   "devDependencies": {
-    "zenn-cli": "^0.1.75"
+    "textlint": "^11.9.0",
+    "textlint-rule-preset-smarthr": "^1.2.0",
+    "textlint-rule-prh": "^5.3.0"
   }
 }

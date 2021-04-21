@@ -1,22 +1,38 @@
+# This is a basic workflow to help you get started with Actions
+# https://zenn.dev/yuta28/articles/blog-lint-ci-reviewdog
+
 name: reviewdog
+
 on: [pull_request]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  textlint:
-    name: runner / textlint
-    runs-on: ubuntu-latest
+  reviewdog-github-check:
+    name: reviewdog (github-check)
+    runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: Setup node/npm
-        uses: actions/setup-node@v1
+      - uses: reviewdog/action-setup@v1
         with:
-          node-version: '15'
-      - name: textlint-github-pr-review
+          reviewdog_version: latest
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "15"
+      - name: cache-node-modules
+        uses: pat-s/always-upload-cache@v2.1.3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-
+      - name: textlint-github-pr-check
         uses: tsuyoshicho/action-textlint@v3
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-pr-review
-          level: warning
-          textlint_flags: "articles/**"
+          reporter: github-pr-check
+          textlint_flags: "articles/*.md"
+

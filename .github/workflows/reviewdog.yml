@@ -28,7 +28,11 @@ jobs:
           restore-keys: |
             node-
       - name: Install dependent module
-        run: npm install
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          if [ ! -f "$(npm bin)/textlint" ]; then
+            npm install
+          fi
       - name: Execute textlint
         continue-on-error: true
         run: |

@@ -30,13 +30,16 @@ jobs:
           restore-keys: |
             node-
       - name: Execute textlint
-        continue-on-error: true
+        id: lint_step
         run: |
            npm install
            npx textlint --format checkstyle -o '.textlint.log' 'articles/*.md'
-      - name: Review
+      - name: Report
         if: failure()
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cat .textlint.log | reviewdog -f=checkstyle -name="textlint" -reporter="github-pr-review"
+      - if: always()
+        continue-on-error: true
+        run: echo DONE

@@ -28,11 +28,12 @@ jobs:
           restore-keys: |
             node-
       - name: Install dependent module
-        run: npm install -D
+        run: npm install
       - name: Execute textlint
+        continue-on-error: true
         run: |
-          npx textlint -f checkstyle "articles/*.md" >> .textlint.log
-      - name: Run reviewdog
+          npx textlint --format checkstyle -o '.textlint.log' 'articles/*.md'
+      - name: Review
         if: failure()
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}

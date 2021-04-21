@@ -28,7 +28,7 @@ jobs:
           restore-keys: |
             node-
       - name: Install dependent module
-        run: npm install
+        run: npm install -D
       - name: Execute textlint
         run: |
           npx textlint -f checkstyle "articles/*.md" >> .textlint.log

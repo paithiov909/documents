@@ -32,6 +32,7 @@ jobs:
       - name: Execute textlint
         continue-on-error: true
         run: |
+           npm install
            npx textlint --format checkstyle -o '.textlint.log' 'articles/*.md'
       - name: Review
         if: failure()

@@ -46,3 +46,5 @@ canonical: 'https://note.com/shinabitanori/n/nbd3a2f9b85a1'
 
 だから、本当の幸せなんてあるはずがない。
 
+
+

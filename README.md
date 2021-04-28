@@ -31,8 +31,9 @@ description: '' ## optional
 - Citation style (for tanka poem)
 
 ``` json
-はいこちらあきる野市立希望的観測所ですお困りですか
-／さちこ「折本」
+> はいこちらあきる野市立希望的観測所ですお困りですか
+> 
+> ／さちこ「折本」
 ```
 
 ## License

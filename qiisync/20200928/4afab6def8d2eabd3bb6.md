@@ -6,17 +6,19 @@ Author: Kato Akiru
 Private: false
 ---
 
+##  【R】spacyr・cleanNLPのデモ
+
 ## spacyr
 
-### spacyrについて
+#### spacyrについて
 
 [spaCy](https://spacy.io/)を{reticulate}経由で呼ぶRパッケージです。
 
-[Wrapper to the spaCy NLP Library • spacyr](https://spacyr.quanteda.io/)
+> [Wrapper to the spaCy NLP Library • spacyr](https://spacyr.quanteda.io/)
 
 spaCyは2.3で日本語のモデルが利用できるようになったらしいです。
 
-### Initialize
+#### Initialize
 
 簡単に導入できるのですが、Windows環境だけの罠として以下の手順はRを管理者権限で実行する必要があります。Rstudioならショートカットを右クリックから「管理者として実行」です。
 
@@ -80,17 +82,17 @@ spacyr::spacy_parse("望遠鏡で泳ぐ彼女を見た", dependency = TRUE, lemm
 spacyr::spacy_finalize()
 ```
 
-## cleanNLP
+### cleanNLP
 
-### cleanNLPについて
+#### cleanNLPについて
 
 UDPipe、spaCy、CoreNLPをtidyに使えるよ！というRパッケージです。
 
-[cleanNLP: A Tidy Data Model for Natural Language Processing | cleanNLP](https://statsmaths.github.io/cleanNLP/)
+> [cleanNLP: A Tidy Data Model for Natural Language Processing | cleanNLP](https://statsmaths.github.io/cleanNLP/)
 
 UDPipeについてはふつうに{udpipe}をバックエンドとして使っています。spaCyとCoreNLPについてはpipでPythonライブラリを別途導入して、それをバックエンドとして使うようです（{spacyr}や{coreNLP}とは無関係）。spaCyについてはcondaenvのなかにすでにモデルをダウンロードしてあるのでそれを利用できないか試してみたのですが、手元ではうまく動かせませんでした。実質的に{udpipe}のラッパーという感じです。
 
-### Initialize
+#### Initialize
 
 `cleanNLP::cnlp_init_udpipe`だけで動くようになります。脳死でも使えて便利。
 

@@ -6,7 +6,6 @@ Author: Kato Akiru
 Private: false
 ---
 
-
 [自然言語処理 #2 Advent Calendar2019](https://qiita.com/advent-calendar/2019/nlp2) 23日目です。
 
 [![paithiov909/pipian - GitHub](https://gh-card.dev/repos/paithiov909/pipian.svg)](https://github.com/paithiov909/pipian)

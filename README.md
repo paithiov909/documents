@@ -2,13 +2,10 @@
 
 > backups of blog posts
 
-## Links
-
-- [Blog](https://lyrikuso.netlify.app/)
-
 ## Programmable Search
 
-- [Search all across R documents](https://paithiov909.github.io/documents/html/search-r-books.html)
+- [Search all across R documents](https://paithiov909.github.io/documents/html/search-r-docs.html)
+- [Search all across R documents\[ja\]（日本語のドキュメントのみ）](https://paithiov909.github.io/documents/html/search-r-docs-ja.html)
 - [Search all across my own articles](https://paithiov909.github.io/documents/html/search-articles.html)
 
 ## Style Guide

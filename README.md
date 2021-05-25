@@ -1,6 +1,6 @@
 # documents
 
-> backups of blog posts
+> tools and backups of blog posts
 
 ## Programmable Search
 

@@ -5,7 +5,11 @@
 ## Links
 
 - [Blog](https://lyrikuso.netlify.app/)
-- [Docsify on GitHub Pages](https://paithiov909.github.io/documents/)
+
+## Programmable Search
+
+- [Search all across R documents](https://paithiov909.github.io/documents/html/search-r-books.html)
+- [Search all across my own articles](https://paithiov909.github.io/documents/html/search-articles.html)
 
 ## Style Guide
 

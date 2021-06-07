@@ -68,5 +68,3 @@ https://twitter.com/shinabitanori/status/1182584300538982401
 * 崎山治男（2005）『「心の時代」と自己　感情社会学の視座』　勁草書房
 * 崎山治男（2007）「[感情社会学という暴力　―『生きられた感情』をめぐって―](http://www.ritsumei.ac.jp/ss/sansharonshu/assets/file/2007/43-3_02-02.pdf)」
 
-
-

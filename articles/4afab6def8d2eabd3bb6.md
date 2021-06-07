@@ -1,9 +1,11 @@
 ---
-ID: 4afab6def8d2eabd3bb6
-Title: 【R】spacyr・cleanNLPのデモ
-Tags: R,Anaconda,reticulate,spaCy
-Author: Kato Akiru
-Private: false
+title: '【R】spacyr・cleanNLPのデモ'
+emoji: '🌿'
+type: 'tech'
+topics: ['r','spacy','sudachi','ginza']
+published: true
+author: 'paithiov909'
+canonical: 'https://zenn.dev/paithiov909/articles/4afab6def8d2eabd3bb6'
 ---
 
 ## spacyr
@@ -12,7 +14,7 @@ Private: false
 
 [spaCy](https://spacy.io/)をreticulate経由で呼ぶRパッケージです。
 
-> [Wrapper to the spaCy NLP Library • spacyr](https://spacyr.quanteda.io/)
+https://spacyr.quanteda.io/
 
 基本的にpipからインストールできるモデルを使ってPOS tagging・依存関係ラベリング・固有表現抽出をやるためのものです。
 
@@ -206,7 +208,7 @@ spacyr::spacy_parse(
 
 UDPipe、spaCy、CoreNLPをtidyに使えるよ！というRパッケージです。
 
-> [cleanNLP: A Tidy Data Model for Natural Language Processing | cleanNLP](https://statsmaths.github.io/cleanNLP/)
+https://statsmaths.github.io/cleanNLP/
 
 UDPipeについてはふつうに[udpipe](https://github.com/bnosac/udpipe)をバックエンドとして使っています。spaCyとCoreNLPについてはpipでPythonライブラリを別途導入して、それをバックエンドとして使うようです（spacyrや[coreNLP](https://github.com/statsmaths/coreNLP)とは無関係）。実質的にはudpipeのラッパーです。
 

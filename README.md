@@ -1,7 +1,5 @@
 # documents
 
-> tools and backups of blog posts
-
 ## Programmable Search
 
 - [Search all across R documents](https://paithiov909.github.io/documents/html/search-r-docs.html)
@@ -10,13 +8,16 @@
 
 ## Style Guide
 
-- Follow the [ZennのMarkdown記法](https://zenn.dev/zenn/articles/markdown-guide).
-- `.md` files must end with new 2 blank lines.
-- Enabled contents embedding on [Publii](https://getpublii.com/):
-  - Embedly card `<blockquote class="embedly-card"><h4><a>Post Title</a></h4></blockquote>`
-  - Twitter card
-- Use slug from note URL.
-- YAML front matter sample:
+- [ZennのMarkdown記法](https://zenn.dev/zenn/articles/markdown-guide)を参照のこと。
+- ブログは[Publii](https://getpublii.com/)で生成している。外部リンクとTwitterなどの埋め込みだけ転載時に書き換える。
+
+### Embedly Card
+
+```html
+<blockquote class="embedly-card"><h4><a href="https://zenn.dev/paithiov909" target="_blank" rel="noopener">Post Title</a></h4></blockquote>
+```
+
+### YAML front matter
 
 ``` yaml
 title: 'Title of the post'
@@ -29,7 +30,7 @@ canonical: ''
 description: '' ## optional
 ```
 
-- Citation style (for tanka poem)
+### Citation style (for tanka poem)
 
 ``` json
 > はいこちらあきる野市立希望的観測所ですお困りですか
@@ -39,8 +40,8 @@ description: '' ## optional
 
 ## License
 
-Copyright \(c\) 2021 LYRICAL HANAKUSO AUGUSTA AUTHORS | Kato Akiru and Komine Sachiko.
+&copy; 2021 LYRICAL HANAKUSO AUGUSTA AUTHORS | Kato Akiru and Komine Sachiko.
 
 The documents under `articles`, `archived` and `qiisync` are licensed under the [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed.ja).
-Other articles are distributed under the [CC-BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/deed.ja).
+Other articles are distributed under the [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/deed.ja).
 

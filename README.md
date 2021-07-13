@@ -1,5 +1,7 @@
 # documents
 
+> 実体のない同人サークル
+
 ## Style Guide
 
 - [ZennのMarkdown記法](https://zenn.dev/zenn/articles/markdown-guide)を参照のこと。

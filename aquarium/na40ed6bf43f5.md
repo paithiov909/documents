@@ -1,7 +1,6 @@
 ---
 title: '解題としての小峰さちこ'
 author: 'shinabitanori'
-canonical: 'https://note.com/shinabitanori/n/na40ed6bf43f5'
 description: 'この記事は@shinabitanoriが自作の自家解説をするものです。そういうのが苦手な方は読まないでください'
 ---
 

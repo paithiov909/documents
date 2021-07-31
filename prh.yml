@@ -1,0 +1,43 @@
+imports:
+  - path: ./prh-rules/media/techbooster.yml
+    ignoreRules:
+      - pattern:  /(一|ひと)通り/
+        expected: ひととおり
+      - pattern:  通り
+        expected: とおり
+  - path: ./prh-rules/media/WEB+DB_PRESS.yml
+    ignoreRules:
+      - pattern: もっとも
+        expected: 最も
+      - pattern:
+        - ひととおり
+        - ひと通り
+        - 一とおり
+        expected: 一通り
+
+version: 1
+
+rules:
+# 開き
+  - expected: もっとも
+    pattern: 尤も
+    prh: 平仮名にひらいてください
+  - expected: はたして
+    pattern: 果たして
+    prh: 平仮名にひらいてください
+  - expected: もとは
+    pattern: /(元|基)は/
+    prh: 平仮名にひらいてください
+  - expected: ようするに
+    pattern: 要するに
+    prh: 平仮名にひらいてください
+  - expected: 例をあげる
+    pattern: 例を挙げる
+    specs:
+      - from: 例を挙げる
+        to: 例をあげる
+    prh: 「挙げる」は実際に手を挙げる動作の場合にかぎります
+# 揺れ
+  - expected: しうる
+    pattern: /し(う|え)る/
+    prh: 表記ゆれを統一してください

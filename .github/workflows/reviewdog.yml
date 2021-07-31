@@ -35,4 +35,3 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           textlint_flags: "articles/*.md"
-

@@ -6,7 +6,7 @@
   },
   "rules": {
     "preset-smarthr": {
-      "prh-rules": true,
+      "prh-rules": false,
       "ja-no-mixed-period": false,
       "no-hankaku-kana": true,
       "@textlint-rule/no-unmatched-pair": true,
@@ -26,6 +26,9 @@
       "ja-space-after-exclamation": false,
       "ja-space-after-question": false,
       "ja-space-around-code": false
+    },
+    "prh": {
+      "rulePaths": ["./prh.yml"]
     }
   }
 }

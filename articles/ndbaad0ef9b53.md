@@ -5,7 +5,6 @@ type: 'idea'
 topics: []
 published: false
 author: 'shinabitanori'
-canonical: 'https://note.com/shinabitanori/n/ndbaad0ef9b53'
 ---
 
 ## まえがき

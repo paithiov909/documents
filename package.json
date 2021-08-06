@@ -6,8 +6,9 @@
   "license": "CC0 1.0 Universal",
   "private": true,
   "scripts": {
-    "lint:aquarium": "npx textlint checkstyle 'aquarium/*.md'",
-    "lint:articles": "npx textlint checkstyle 'articles/*.md'"
+    "lint:aquarium": "textlint -f pretty-error \"aquarium/*.md\"",
+    "lint:articles": "textlint -f pretty-error \"articles/*.md\"",
+    "lint:ukulele":  "textlint -f pretty-error \"ukulele/*.md\""
   },
   "devDependencies": {
     "textlint": "12.0.2",

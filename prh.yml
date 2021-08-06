@@ -1,19 +1,25 @@
 imports:
   - path: ./prh-rules/media/techbooster.yml
     ignoreRules:
+# 開く
       - pattern:  /(一|ひと)通り/
         expected: ひととおり
       - pattern:  通り
         expected: とおり
-  - path: ./prh-rules/media/WEB+DB_PRESS.yml
-    ignoreRules:
-      - pattern: もっとも
-        expected: 最も
-      - pattern:
-        - ひととおり
-        - ひと通り
-        - 一とおり
-        expected: 一通り
+      - expected: 分かる
+        pattern:  わかる
+# 許容される揺れ
+      - expected: 他の
+        pattern: ほかの
+      - expected: いえ
+        pattern:  言え
+      - expected: いう
+        pattern:  言う
+      - expected: いわ
+        pattern:  言わ
+# 「以下」でも問題ない
+      - expected: 次$1
+        pattern:  /(?:以下|下記)(の|に)/
 
 version: 1
 
@@ -40,4 +46,4 @@ rules:
 # 揺れ
   - expected: しうる
     pattern: /し(う|え)る/
-    prh: 表記ゆれを統一してください
+    prh: できれば「～しうる」「～しえる」はいずれかにしてください

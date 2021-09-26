@@ -1,11 +1,6 @@
 ---
 title: 'とある短歌の限界事例（ミスリード）'
-emoji: '✏️'
-type: 'idea'
-topics: []
-published: false
 author: 'shinabitanori'
-canonical: 'https://note.com/shinabitanori/n/nae5fe90f17d7'
 ---
 
 ## ここで考える事例

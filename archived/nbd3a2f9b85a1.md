@@ -1,9 +1,5 @@
 ---
 title: '俺たちのクソゲーな日常は今日も恙なくつまらない'
-emoji: '✏️'
-type: 'idea'
-topics: []
-published: false
 author: 'paithiov909'
 ---
 

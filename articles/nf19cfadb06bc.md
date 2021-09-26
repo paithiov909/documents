@@ -4,8 +4,8 @@ emoji: '✏️'
 type: 'idea'
 topics: ['r','nlp','自然言語処理']
 published: true
-author: 'shinabitanori'
-canonical: 'https://note.com/shinabitanori/n/nf19cfadb06bc'
+author: 'paithiov909'
+canonical: 'https://zenn.dev/paithiov909/articles/nf19cfadb06bc'
 ---
 
 ## 短歌のテキストマイニング

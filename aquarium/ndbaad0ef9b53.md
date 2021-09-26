@@ -1,9 +1,5 @@
 ---
 title: '短歌するための演劇論'
-emoji: '✏️'
-type: 'idea'
-topics: []
-published: false
 author: 'shinabitanori'
 ---
 

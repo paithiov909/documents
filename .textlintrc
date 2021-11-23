@@ -6,16 +6,16 @@
   },
   "rules": {
     "preset-smarthr": {
-      "prh-rules": false,
-      "ja-no-mixed-period": false,
-      "no-hankaku-kana": true,
       "@textlint-rule/no-unmatched-pair": true,
+      "prh-rules": false,
       "sentence-length": false,
+      "no-hankaku-kana": true,
+      "no-mixed-zenkaku-and-hankaku-alphabet": false,
       "no-doubled-conjunctive-particle-ga": false,
       "no-double-negative-ja": false,
+      "ja-no-mixed-period": false,
       "ja-no-abusage": true,
       "ja-no-redundant-expression": false,
-      "no-mixed-zenkaku-and-hankaku-alphabet": false,
       "ja-hiragana-keishikimeishi": true,
       "ja-hiragana-fukushi": true,
       "ja-hiragana-hojodoushi": true,
@@ -27,8 +27,8 @@
       "ja-space-after-question": false,
       "ja-space-around-code": false
     },
-    "prh": {
-      "rulePaths": ["./prh.yml"]
+    "@proofdict/proofdict": {
+      "dictURL": "https://paithiov909.github.io/proofdict/"
     }
   }
 }

@@ -12,6 +12,6 @@
     "@proofdict/textlint-rule-proofdict": "3.1.2",
     "textlint": "12.0.2",
     "textlint-rule-preset-smarthr": "1.10.0",
-    "zenn-cli": "0.1.99"
+    "zenn-cli": "0.1.100"
   }
 }

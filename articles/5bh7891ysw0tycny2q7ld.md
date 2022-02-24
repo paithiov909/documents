@@ -1,7 +1,7 @@
 ---
 title: 'CRANにRパッケージを投稿するときの資料メモ'
 emoji: '🗒'
-type: 'tech'
+type: 'idea'
 topics: ['r']
 published: true
 author: 'paithiov909'

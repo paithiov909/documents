@@ -10,8 +10,8 @@
   },
   "devDependencies": {
     "@proofdict/textlint-rule-proofdict": "3.1.2",
-    "textlint": "12.1.0",
-    "textlint-rule-preset-smarthr": "1.11.1",
-    "zenn-cli": "0.1.106"
+    "textlint": "12.1.1",
+    "textlint-rule-preset-smarthr": "1.11.3",
+    "zenn-cli": "0.1.107"
   }
 }

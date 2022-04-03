@@ -84,7 +84,7 @@ usethis::use_version(which = c("patch", "minor", "major", "dev")[1])
 devtools::release()
 ```
 
-`devtools::check_rhub()`については、`resutls <- devtools::check_rhub()`とかして結果を保持しておいて`results$cran_summary()`とするとcran-comments.mdに書く用のマークダウンを出力できるので、たぶんそうしたほうがよい。
+`devtools::check_rhub()`については、`results <- devtools::check_rhub()`とかして結果を保持しておいて`results$cran_summary()`とするとcran-comments.mdに書く用のマークダウンを出力できるので、たぶんそうしたほうがよい。
 
 パッケージ製作全体を通じたより詳しい流れとしては、次の記事がオススメ。
 

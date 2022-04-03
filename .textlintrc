@@ -26,9 +26,6 @@
       "ja-space-after-exclamation": false,
       "ja-space-after-question": false,
       "ja-space-around-code": false
-    },
-    "@proofdict/proofdict": {
-      "dictURL": "https://paithiov909.github.io/proofdict/"
     }
   }
 }

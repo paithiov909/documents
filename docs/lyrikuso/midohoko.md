@@ -1,6 +1,6 @@
 ---
-title: 星空と青空のあいだ――『緑の祠』論
-author: shinabitanori
+title: '星空と青空のあいだ――『緑の祠』論'
+author: 'shinabitanori'
 ---
 
 ## ライトヴァースの「ライト」に関して

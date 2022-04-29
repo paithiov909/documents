@@ -1,6 +1,6 @@
 ---
-title: 歌人の手つき（Ⅰ）大森静佳『てのひらを燃やす』を読む
-author: shinabitanori
+title: '歌人の手つき（Ⅰ）大森静佳『てのひらを燃やす』を読む'
+author: 'shinabitanori'
 ---
 
 ## はじめに

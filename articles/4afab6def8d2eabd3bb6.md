@@ -5,7 +5,6 @@ type: 'tech'
 topics: ['r','spacy','sudachi','ginza']
 published: true
 author: 'paithiov909'
-canonical: 'https://zenn.dev/paithiov909/articles/4afab6def8d2eabd3bb6'
 ---
 
 ## spacyr

@@ -188,7 +188,7 @@ WRDは、Word Mover's Distanceをもとに改良された自然言語文間の�
 - [WRD（Word Rotator's Distance）で文書間の距離（類似度）を計算する - Qiita](https://qiita.com/kenta1984/items/bad7e2f68331849d0053)
 - [Word Rotator’s Distance - 由々しき](https://mytache.hatenablog.com/entry/2020/06/13/032100)
 
-既存のPython実装はEarth Mover's Distanceの計算に[POT](https://pythonot.github.io/)の[ot.emb2](https://pythonot.github.io/all.html?highlight=emd#ot.emd2)というメソッドを使っているようですが、apportitaでは[transport](https://CRAN.R-project.org/package=transport)というRパッケージにある`transport::wasserstein`を使っています。
+既存のPython実装はEarth Mover's Distanceの計算に[POT](https://pythonot.github.io/)の[ot.emd2](https://pythonot.github.io/all.html?highlight=emd#ot.emd2)というメソッドを使っているようですが、apportitaでは[transport](https://CRAN.R-project.org/package=transport)というRパッケージにある`transport::wasserstein`を使っています。
 
 
 ```r

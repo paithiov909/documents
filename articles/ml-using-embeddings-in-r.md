@@ -39,7 +39,7 @@ summary(rhr)
 #>  Mode  :character                         Mode  :character   train:3878
 ```
 
-maginitude形式の分散表現は、[apportita](https://github.com/paithiov909/apportita)で読み込むことができます。ここでは、先頭から10,000語の分散表現をtibbleとして切り出して利用することにします。
+magnitude形式の分散表現は、[apportita](https://github.com/paithiov909/apportita)で読み込むことができます。ここでは、先頭から10,000語の分散表現をtibbleとして切り出して利用することにします。
 
 
 ```r

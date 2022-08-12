@@ -192,26 +192,24 @@ WRDは、Word Mover's Distanceをもとに改良された自然言語文間の�
 
 
 ```r
-Sys.setenv(SUDACHI_DICT_PATH = "./dict/system_full.dic")
-
 apportita::calc_wrd(
   conn,
-  washoku::tokenize("醤油とコーラって似ていますよね", mode = "A")$normalized,
-  washoku::tokenize("ソースとサイダーも似ていますよ", mode = "A")$normalized
+  fledgingr::tokenize("醤油とコーラって似ていますよね", mode = "A")$normalized_form,
+  fledgingr::tokenize("ソースとサイダーも似ていますよ", mode = "A")$normalized_form
 )
 #> [1] 0.1462258
 
 apportita::calc_wrd(
   conn,
-  washoku::tokenize("老人と海", mode = "A")$normalized,
-  washoku::tokenize("風に舞いあがるビニールシート", mode = "A")$normalized
+  fledgingr::tokenize("老人と海", mode = "A")$normalized_form,
+  fledgingr::tokenize("風に舞いあがるビニールシート", mode = "A")$normalized_form
 )
 #> [1] 0.6577369
 ```
 
 WRDを計算するだけなら`apportita::calc_wrd`に適当な単語列をベクトルで与えるだけでよいのですが、ここで使っているchiVeはSudachiによるA単位の分かち書きをベースにしているため、いちおうSudachiによって正規化された形の単語列を使っています。
 
-RでSudachiPyを利用するには[sudachir]( https://CRAN.R-project.org/package=sudachir)というパッケージもありますが、ここでは[paithiov909/washoku](https://github.com/paithiov909/washoku)というパッケージを使っています。このリポジトリは[uribo/washoku](https://github.com/uribo/washoku)からforkしたもので、[yutannihilation/fledgingr](https://github.com/yutannihilation/fledgingr)から引っ張ってきた[sudachi.rs](https://github.com/WorksApplications/sudachi.rs)のラッパー関数を実装しています。[Sudachiの辞書](https://github.com/WorksApplications/SudachiDict)はあらかじめ手元にダウンロードしておく必要があります。
+RでSudachiPyを利用するには[sudachir]( https://CRAN.R-project.org/package=sudachir)というパッケージもありますが、ここでは、SudachiのRust実装である[sudachi.rs](https://github.com/WorksApplications/sudachi.rs)のラッパーを提供している[fledgingr](https://github.com/yutannihilation/fledgingr)というパッケージを利用しています。
 
 ## さいごに
 

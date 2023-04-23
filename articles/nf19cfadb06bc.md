@@ -1,10 +1,9 @@
 ---
-title: '短歌におけるテキストマイニングとその展望'
-emoji: '✏️'
-type: 'idea'
-topics: ['r','nlp','自然言語処理']
+title: "短歌におけるテキストマイニングとその展望"
+emoji: "️🐼"
+type: "idea"
+topics: ["r","nlp"]
 published: true
-author: 'paithiov909'
 ---
 
 ## 短歌のテキストマイニング
@@ -13,7 +12,7 @@ author: 'paithiov909'
 
 https://github.com/paithiov909/wabbitspunch/blob/master/content/posts/shinabitanori-tanka.Rmd
 
-この記事ではatilika/kuromojiをrJava経由で呼んで自作短歌の形態素解析（IPA辞書）をおこない、出現する語彙の簡単な要約を試みている。具体的には、Webでよく見られる「テキストマイニングをやってみた」系の記事でよくあるような図を描いてみたりしている。  
+この記事ではatilika/kuromojiをrJava経由で呼んで自作短歌の形態素解析（IPA辞書）をおこない、出現する語彙の簡単な要約を試みている。具体的には、Webでよく見られる「テキストマイニングをやってみた」系の記事でよくあるような図を描いてみたりしている。
 
 **全作品を通じて頻出する語彙（ストップワードを使用して語彙を削っている。動詞は原型をカウント）**
 
@@ -31,7 +30,7 @@ https://github.com/paithiov909/wabbitspunch/blob/master/content/posts/shinabitan
 
 ![&#x753B;&#x50CF;4](https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/24798034/picture_pc_1fd29461b7936be4a76fc3c51bfe3ef9.png)
 
-このカウントが多かったものから順に、3の2から4の4まで、短歌のなかでの実際の位置を図示した。  
+このカウントが多かったものから順に、3の2から4の4まで、短歌のなかでの実際の位置を図示した。
 
 ![&#x753B;&#x50CF;3](https://d2l930y2yx77uc.cloudfront.net/production/uploads/images/24798003/picture_pc_20bac58b5a13effc19228ef72249102b.png)
 
@@ -74,4 +73,3 @@ http://cocoatalk.blog94.fc2.com/blog-entry-725.html
 展望として、短歌の構文の特徴量化をやってみたいと考えている。短歌における「構文」の癖はときどきその人の文体的特徴（作家性）のひとつと見なされて話題にのぼることがあるが、そうした短歌における「構文」について定量的に分析した例はおそらくこれまでに存在しない。今回の「AのB」のようなかたちの表現の探索も、頻度をカウントしたいというよりも、むしろ自作の「構文」の癖を確認することができるかを探るための手がかりとしてやってみたものだった。
 
 一般に係り受け解析の結果は構文木として解釈でき、ある文の「構文」は、ある語句から特定の語句を根とするパス（部分木）が存在するかのブール値として特徴量化できると考えられる。また、動詞に係る名詞を含む文節に注目し、動詞の格情報にもとづいて特徴量をつくるのもおもしろそうだと思う。
-

@@ -1,10 +1,9 @@
 ---
-title: '文体的特徴にもとづく青空文庫の作品の著者分類'
-emoji: '🔍'
-type: 'idea'
-topics: ['r','自然言語処理']
+title: "文体的特徴にもとづく青空文庫の作品の著者分類"
+emoji: "🔍"
+type: "idea"
+topics: ["r","自然言語処理"]
 published: true
-author: 'paithiov909'
 ---
 
 
@@ -81,22 +80,22 @@ df <- df |>
   gibasa::prettify(col_select = "POS1")
 
 summary(df)
-#>                 doc_id              author       sentence_id    
-#>  世界怪談名作集    :  5690   太宰治    :30107   Min.   :  1.00  
-#>  遠野の奇聞        :  3155   芥川竜之介:29082   1st Qu.: 14.00  
-#>  海のほとり        :  3087   岡本綺堂  :27768   Median : 30.00  
-#>  放し鰻            :  3074   夏目漱石  :24698   Mean   : 38.45  
-#>  海の使者          :  3004   泉鏡花    :15515   3rd Qu.: 55.00  
-#>  のろのろ砲弾の驚異:  2984   海野十三  :11504   Max.   :198.00  
-#>  (Other)           :126480   (Other)   : 8800                   
-#>     token_id         token               POS1          
-#>  Min.   :  1.00   Length:147474      Length:147474     
-#>  1st Qu.:  7.00   Class :character   Class :character  
-#>  Median : 14.00   Mode  :character   Mode  :character  
-#>  Mean   : 19.85                                        
-#>  3rd Qu.: 26.00                                        
-#>  Max.   :193.00                                        
-#> 
+#>                 doc_id              author       sentence_id
+#>  世界怪談名作集    :  5690   太宰治    :30107   Min.   :  1.00
+#>  遠野の奇聞        :  3155   芥川竜之介:29082   1st Qu.: 14.00
+#>  海のほとり        :  3087   岡本綺堂  :27768   Median : 30.00
+#>  放し鰻            :  3074   夏目漱石  :24698   Mean   : 38.45
+#>  海の使者          :  3004   泉鏡花    :15515   3rd Qu.: 55.00
+#>  のろのろ砲弾の驚異:  2984   海野十三  :11504   Max.   :198.00
+#>  (Other)           :126480   (Other)   : 8800
+#>     token_id         token               POS1
+#>  Min.   :  1.00   Length:147474      Length:147474
+#>  1st Qu.:  7.00   Class :character   Class :character
+#>  Median : 14.00   Mode  :character   Mode  :character
+#>  Mean   : 19.85
+#>  3rd Qu.: 26.00
+#>  Max.   :193.00
+#>
 ```
 
 ### 出現頻度の集計
@@ -300,9 +299,9 @@ df <- readr::read_csv(tmp, col_types = "cccf") |>
   dplyr::mutate(author = forcats::fct_drop(author))
 
 summary(df)
-#>     doc_id             title               text                  author  
-#>  Length:152         Length:152         Length:152         芥川竜之介:69  
-#>  Class :character   Class :character   Class :character   太宰治    :83  
+#>     doc_id             title               text                  author
+#>  Length:152         Length:152         Length:152         芥川竜之介:69
+#>  Class :character   Class :character   Class :character   太宰治    :83
 #>  Mode  :character   Mode  :character   Mode  :character
 ```
 
@@ -391,7 +390,7 @@ sessioninfo::session_info()
 #>  date     2022-07-23
 #>  rstudio  2022.07.0+548 Spotted Wakerobin (desktop)
 #>  pandoc   2.18 @ C:/Program Files/RStudio/bin/quarto/bin/tools/ (via rmarkdown)
-#> 
+#>
 #> ─ Packages ────────────────────────────────────────────────────────────────────
 #>  ! package             * version    date (UTC) lib source
 #>    abind                 1.4-5      2016-07-21 [1] CRAN (R 4.2.0)
@@ -502,11 +501,11 @@ sessioninfo::session_info()
 #>    withr                 2.5.0      2022-03-03 [1] CRAN (R 4.2.0)
 #>    xfun                  0.31       2022-05-10 [1] CRAN (R 4.2.0)
 #>    yaml                  2.3.5      2022-02-21 [1] CRAN (R 4.2.0)
-#> 
+#>
 #>  [1] C:/R/win-library/4.2
 #>  [2] C:/Program Files/R/R-4.2.1/library
-#> 
+#>
 #>  D ── DLL MD5 mismatch, broken installation.
-#> 
+#>
 #> ───────────────────────────────────────────────────────────────────────────────
 ```

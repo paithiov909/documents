@@ -1,10 +1,9 @@
 ---
-title: 'Rで日本語の単語分散表現を使ったテキスト分類をやる'
-emoji: '🥬'
-type: 'tech'
-topics: ['r','自然言語処理', 'chive', 'sudachi']
+title: "Rで日本語の単語分散表現を使ったテキスト分類をやる"
+emoji: "🥬"
+type: "tech"
+topics: ["r","自然言語処理","chive","sudachi"]
 published: true
-author: 'paithiov909'
 ---
 
 ## この記事でやること
@@ -33,9 +32,9 @@ rhr <- rhr$rhr |>
   dplyr::select(example_id, label, text, usage)
 
 summary(rhr)
-#>   example_id                   label          text             usage     
-#>  Length:5553        reputation    :2069   Length:5553        dev  :1122  
-#>  Class :character   not_reputation:3484   Class :character   test : 553  
+#>   example_id                   label          text             usage
+#>  Length:5553        reputation    :2069   Length:5553        dev  :1122
+#>  Class :character   not_reputation:3484   Class :character   test : 553
 #>  Mode  :character                         Mode  :character   train:3878
 ```
 
@@ -150,8 +149,8 @@ autoplot(rhr_grid)
 rhr_grid |>
   show_best("roc_auc")
 #> # A tibble: 5 × 7
-#>    penalty .metric .estimator  mean     n std_err .config              
-#>      <dbl> <chr>   <chr>      <dbl> <int>   <dbl> <chr>                
+#>    penalty .metric .estimator  mean     n std_err .config
+#>      <dbl> <chr>   <chr>      <dbl> <int>   <dbl> <chr>
 #> 1 0.00174  roc_auc binary     0.921    10 0.00202 Preprocessor1_Model22
 #> 2 0.000788 roc_auc binary     0.921    10 0.00192 Preprocessor1_Model21
 #> 3 0.00386  roc_auc binary     0.918    10 0.00205 Preprocessor1_Model23
@@ -209,7 +208,7 @@ sessioninfo::session_info()
 #>  date     2022-07-23
 #>  rstudio  2022.07.0+548 Spotted Wakerobin (desktop)
 #>  pandoc   2.18 @ C:/Program Files/RStudio/bin/quarto/bin/tools/ (via rmarkdown)
-#> 
+#>
 #> ─ Packages ────────────────────────────────────────────────────────────────────
 #>  package      * version        date (UTC) lib source
 #>  apportita    * 0.0.1          2022-05-10 [1] https://paithiov909.r-universe.dev (R 4.2.0)
@@ -324,9 +323,9 @@ sessioninfo::session_info()
 #>  xfun           0.31           2022-05-10 [1] CRAN (R 4.2.0)
 #>  yaml           2.3.5          2022-02-21 [1] CRAN (R 4.2.0)
 #>  yardstick    * 1.0.0          2022-06-06 [1] CRAN (R 4.2.0)
-#> 
+#>
 #>  [1] C:/R/win-library/4.2
 #>  [2] C:/Program Files/R/R-4.2.1/library
-#> 
+#>
 #> ───────────────────────────────────────────────────────────────────────────────
 ```

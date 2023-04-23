@@ -1,10 +1,9 @@
 ---
-title: '【R】spacyr・cleanNLPのデモ'
-emoji: '🌿'
-type: 'tech'
-topics: ['r','spacy','sudachi','ginza']
+title: "【R】spacyr・cleanNLPのデモ"
+emoji: "🌿"
+type: "tech"
+topics: ["r","spacy","sudachi","ginza"]
 published: true
-author: 'paithiov909'
 ---
 
 ## spacyr
@@ -98,11 +97,11 @@ spacyr::spacy_tokenize(
   c("望遠鏡で泳ぐ彼女を見た", "頭が赤い魚を食べる猫", "外国人参政権")
 )
 #> $text1
-#> [1] "望遠鏡" "で"     "泳ぐ"   "彼女"   "を"     "見"     "た"    
-#> 
+#> [1] "望遠鏡" "で"     "泳ぐ"   "彼女"   "を"     "見"     "た"
+#>
 #> $text2
-#> [1] "頭"     "が"     "赤い"   "魚"     "を"     "食べる" "猫"    
-#> 
+#> [1] "頭"     "が"     "赤い"   "魚"     "を"     "食べる" "猫"
+#>
 #> $text3
 #> [1] "外国人参政権"
 ```
@@ -116,19 +115,19 @@ spacyr::spacy_parse(
   lemma = FALSE
 )
 #>    doc_id sentence_id token_id        token  pos         entity
-#> 1   text1           1        1       望遠鏡 NOUN               
-#> 2   text1           1        2           で  ADP               
-#> 3   text1           1        3         泳ぐ VERB               
-#> 4   text1           1        4         彼女 PRON               
-#> 5   text1           1        5           を  ADP               
-#> 6   text1           1        6           見 VERB               
-#> 7   text1           1        7           た  AUX               
+#> 1   text1           1        1       望遠鏡 NOUN
+#> 2   text1           1        2           で  ADP
+#> 3   text1           1        3         泳ぐ VERB
+#> 4   text1           1        4         彼女 PRON
+#> 5   text1           1        5           を  ADP
+#> 6   text1           1        6           見 VERB
+#> 7   text1           1        7           た  AUX
 #> 8   text2           1        1           頭 NOUN  Animal_Part_B
-#> 9   text2           1        2           が  ADP               
+#> 9   text2           1        2           が  ADP
 #> 10  text2           1        3         赤い  ADJ Nature_Color_B
-#> 11  text2           1        4           魚 NOUN               
-#> 12  text2           1        5           を  ADP               
-#> 13  text2           1        6       食べる VERB               
+#> 11  text2           1        4           魚 NOUN
+#> 12  text2           1        5           を  ADP
+#> 13  text2           1        6       食べる VERB
 #> 14  text2           1        7           猫 NOUN       Mammal_B
 #> 15  text3           1        1 外国人参政権 NOUN
 ```
@@ -144,19 +143,19 @@ spacyr::spacy_parse(
   pos = FALSE
 )
 #>    doc_id sentence_id token_id        token head_token_id dep_rel         entity
-#> 1   text1           1        1       望遠鏡             3     obl               
-#> 2   text1           1        2           で             1    case               
-#> 3   text1           1        3         泳ぐ             4     acl               
-#> 4   text1           1        4         彼女             6     obj               
-#> 5   text1           1        5           を             4    case               
-#> 6   text1           1        6           見             6    ROOT               
-#> 7   text1           1        7           た             6     aux               
+#> 1   text1           1        1       望遠鏡             3     obl
+#> 2   text1           1        2           で             1    case
+#> 3   text1           1        3         泳ぐ             4     acl
+#> 4   text1           1        4         彼女             6     obj
+#> 5   text1           1        5           を             4    case
+#> 6   text1           1        6           見             6    ROOT
+#> 7   text1           1        7           た             6     aux
 #> 8   text2           1        1           頭             3   nsubj  Animal_Part_B
-#> 9   text2           1        2           が             1    case               
+#> 9   text2           1        2           が             1    case
 #> 10  text2           1        3         赤い             4     acl Nature_Color_B
-#> 11  text2           1        4           魚             6     obj               
-#> 12  text2           1        5           を             4    case               
-#> 13  text2           1        6       食べる             7     acl               
+#> 11  text2           1        4           魚             6     obj
+#> 12  text2           1        5           を             4    case
+#> 13  text2           1        6       食べる             7     acl
 #> 14  text2           1        7           猫             7    ROOT       Mammal_B
 #> 15  text3           1        1 外国人参政権             1    ROOT
 ```
@@ -221,13 +220,13 @@ annotation <- cleanNLP::cnlp_annotate(input = iconv("望遠鏡で泳ぐ彼女を
 annotation$token
 #> # A tibble: 7 x 11
 #>   doc_id   sid tid   token  token_with_ws lemma  upos  xpos  feats tid_source relation
-#> *  <int> <int> <chr> <chr>  <chr>         <chr>  <chr> <chr> <chr> <chr>      <chr>   
-#> 1      1     1 1     望遠鏡 望遠鏡        望遠鏡 NOUN  NN    <NA>  6          obl     
-#> 2      1     1 2     で     で            で     ADP   PS    <NA>  1          case    
-#> 3      1     1 3     泳ぐ   泳ぐ          泳ぐ   VERB  VV    <NA>  4          acl     
-#> 4      1     1 4     彼女   彼女          彼女   PRON  NP    <NA>  6          obj     
-#> 5      1     1 5     を     を            を     ADP   PS    <NA>  4          case    
-#> 6      1     1 6     見     見            見る   VERB  VV    <NA>  0          root    
+#> *  <int> <int> <chr> <chr>  <chr>         <chr>  <chr> <chr> <chr> <chr>      <chr>
+#> 1      1     1 1     望遠鏡 望遠鏡        望遠鏡 NOUN  NN    <NA>  6          obl
+#> 2      1     1 2     で     で            で     ADP   PS    <NA>  1          case
+#> 3      1     1 3     泳ぐ   泳ぐ          泳ぐ   VERB  VV    <NA>  4          acl
+#> 4      1     1 4     彼女   彼女          彼女   PRON  NP    <NA>  6          obj
+#> 5      1     1 5     を     を            を     ADP   PS    <NA>  4          case
+#> 6      1     1 6     見     見            見る   VERB  VV    <NA>  0          root
 #> 7      1     1 7     た     た            た     AUX   AV    <NA>  6          aux
 ```
 
@@ -268,19 +267,19 @@ Windows10, Miniconda3（Minicondaそのものの環境はPython=3.7.9, conda=4.9
 ```r
 sessioninfo::session_info()
 #> - Session info --------------------------------------------------------------------------------
-#>  setting  value                       
+#>  setting  value
 #>  version  R version 4.0.2 (2020-06-22)
-#>  os       Windows 10 x64              
-#>  system   x86_64, mingw32             
-#>  ui       RStudio                     
-#>  language (EN)                        
-#>  collate  Japanese_Japan.932          
-#>  ctype    Japanese_Japan.932          
-#>  tz       Asia/Tokyo                  
-#>  date     2021-05-24                  
-#> 
+#>  os       Windows 10 x64
+#>  system   x86_64, mingw32
+#>  ui       RStudio
+#>  language (EN)
+#>  collate  Japanese_Japan.932
+#>  ctype    Japanese_Japan.932
+#>  tz       Asia/Tokyo
+#>  date     2021-05-24
+#>
 #> - Packages ------------------------------------------------------------------------------------
-#>  package      * version date       lib source        
+#>  package      * version date       lib source
 #>  assertthat     0.2.1   2019-03-21 [1] CRAN (R 4.0.2)
 #>  backports      1.2.1   2020-12-09 [1] CRAN (R 4.0.3)
 #>  bslib          0.2.4   2021-01-25 [1] CRAN (R 4.0.3)
@@ -353,8 +352,7 @@ sessioninfo::session_info()
 #>  withr          2.4.2   2021-04-18 [1] CRAN (R 4.0.5)
 #>  xfun           0.22    2021-03-11 [1] CRAN (R 4.0.4)
 #>  yaml           2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
-#> 
+#>
 #> [1] C:/Users/user/Documents/R/win-library/4.0
 #> [2] C:/Program Files/R/R-4.0.2/library
 ```
-

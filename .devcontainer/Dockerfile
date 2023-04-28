@@ -1,4 +1,4 @@
-ARG VARIANT="4.2"
+ARG VARIANT="4.3"
 FROM ghcr.io/rocker-org/devcontainer/tidyverse:${VARIANT}
 
 RUN python3 -m pip install black flake8 ipadic && \

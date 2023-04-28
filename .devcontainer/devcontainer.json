@@ -11,9 +11,9 @@
             "installVscDebugger": true
         },
         "ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
-            "packages": "tidymodels,vetiver,plumber,microbenchmark,reprex,targets,gibasa,MatrixGenerics,sparseMatrixStats",
+            "packages": "tidymodels,vetiver,plumber,microbenchmark,reprex,targets,gibasa",
             "installSystemRequirements": true,
-            "additionalRepositories": "bioconductor = 'https://bioconductor.r-universe.dev'"
+            "additionalRepositories": "paithiov909 = 'https://paithiov909.r-universe.dev'"
         },
         "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
     },

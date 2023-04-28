@@ -9,7 +9,7 @@
     "lint:articles": "textlint -f pretty-error \"articles/*.md\""
   },
   "devDependencies": {
-    "textlint": "12.6.1",
+    "textlint": "13.3.2",
     "textlint-rule-preset-smarthr": "1.23.1",
     "zenn-cli": "0.1.143"
   }

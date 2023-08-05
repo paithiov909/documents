@@ -11,14 +11,14 @@
             "installVscDebugger": true
         },
         "ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
-            "packages": "tidymodels,vetiver,plumber,microbenchmark,reprex,targets,gibasa",
+            "packages": "tidymodels,vetiver,plumber,microbenchmark,sessioninfo,reprex,gibasa",
             "installSystemRequirements": true,
             "additionalRepositories": "paithiov909 = 'https://paithiov909.r-universe.dev'"
         },
         "ghcr.io/rocker-org/devcontainer-features/quarto-cli:1": {}
     },
     "remoteEnv": {
-        "MECAB_DEFAULT_RC": "/usr/local/etc/mecabrc"
+        "MECABRC": "/usr/local/etc/mecabrc"
     },
     "forwardPorts": [8000],
     "portsAttributes": {

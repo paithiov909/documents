@@ -1,6 +1,6 @@
 ---
 title: "mlpack in R"
-emoji: "🥬"
+emoji: "🐧"
 type: "tech"
 topics: ["r"]
 published: true

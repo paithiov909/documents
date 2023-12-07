@@ -8,9 +8,7 @@ published: true
 
 ## mlpackってなに?
 
-[mlpack](https://github.com/mlpack/mlpack)は、C++で実装された機械学習ライブラリです。
-header-onlyのライブラリで、Armadillo, ensmallen, cerealに依存しています
-（以前はBoostも使われていましたが、v4.0.0から依存が外れました）。ライセンスは3-clause BSD licenseです。
+[mlpack](https://github.com/mlpack/mlpack)は、C++で実装された機械学習ライブラリです。header-onlyのライブラリで、Armadillo, ensmallen, cerealに依存しています（以前はBoostも使われていましたが、v4.0.0から依存が外れました）。ライセンスは3-clause BSD licenseです。
 
 リポジトリのREADMEには次のように書かれています。
 
@@ -18,31 +16,23 @@ header-onlyのライブラリで、Armadillo, ensmallen, cerealに依存して�
 
 いわゆる機械学習フレームワークみたいなものではなくて、いろいろな機械学習アルゴリズムのC++実装の詰め合わせみたいなライブラリです。
 
-Python, Julia, GoとRのバインディングがあるほか、CLIも用意されています。
-この記事では、Rパッケージとしてのmlpackパッケージについて紹介します。
+Python, Julia, GoとRのバインディングがあるほか、CLIも用意されています。この記事では、Rパッケージとしてのmlpackパッケージについて紹介します。
 
 
 ## mlpack in Rを使ってみる
 
-mlpackは2023年12月現在で[CRAN](https://cran.r-project.org/package=mlpack)からインストールして利用できます。
-個人的にすごくオススメというよりは、なんかこういうのもあるよ、みたいな感じのパッケージです。
+mlpackは2023年12月現在で[CRAN](https://cran.r-project.org/package=mlpack)からインストールして利用できます。個人的にすごくオススメというよりは、なんかこういうのもあるよ、みたいな感じのパッケージです。
 
 C++ライブラリとしては10年くらい前から開発されていますが、公式から提供されるRパッケージとして利用できるようになったのは比較的最近です。
 
-Rcppの開発者であるDirk Eddelbuettelの[ブログ記事](https://gallery.rcpp.org/articles/using-rcppmlpack2/)によると、
-以前はv1系のmlpackをラップした[RcppMLPACK](https://cran.r-project.org/package=RcppMLPACK)というパッケージがあったようですが、
-2020年ごろには現在のmlpackパッケージの開発がはじまっており、前者のメンテナンスはすでに停まっています。
+Rcppの開発者であるDirk Eddelbuettelの[ブログ記事](https://gallery.rcpp.org/articles/using-rcppmlpack2/)によると、以前はv1系のmlpackをラップした[RcppMLPACK](https://cran.r-project.org/package=RcppMLPACK)というパッケージがあったようですが、2020年ごろには現在のmlpackパッケージの開発がはじまっており、前者のメンテナンスはすでに停まっています。
 
 
 ### ランダムフォレスト
 
-[mlpack in R quickstart guide](https://github.com/mlpack/mlpack/blob/master/doc/quickstart/R.md)を参考に、
-とりあえずランダムフォレストを使ってみます。
+[mlpack in R quickstart guide](https://github.com/mlpack/mlpack/blob/master/doc/quickstart/R.md)を参考に、とりあえずランダムフォレストを使ってみます。
 
-[Simple mlpack quickstart example](https://github.com/mlpack/mlpack/blob/master/doc/quickstart/R.md#simple-mlpack-quickstart-example)の例そのままに、
-何らかのデータセットを`data.table::fread`で読み込みます。
-このデータは10万行くらいあるのですが、とりえあず動かしたいだけにしては無駄に大きいので、
-ここでは`dplyr::slice_sample`で適当に行を減らしておきます。
+[Simple mlpack quickstart example](https://github.com/mlpack/mlpack/blob/master/doc/quickstart/R.md#simple-mlpack-quickstart-example)の例そのままに、何らかのデータセットを`data.table::fread`で読み込みます。このデータは10万行くらいあるのですが、とりえあず動かしたいだけにしては無駄に大きいので、ここでは`dplyr::slice_sample`で適当に行を減らしておきます。
 
 
 ```r
@@ -111,10 +101,7 @@ dplyr::glimpse(df)
 #> $ label                              <int> 5, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1,…
 ```
 
-Rで教師あり学習をやる場合、既存のRパッケージでは、
-訓練用データで学習したモデルを変数に格納して`predict`という総称関数に`new_data`と一緒につっこむことで、
-その他のデータに対する予測をするという使い方をすることが多いと思います。
-一方で、mlpackの関数はそのような建付けにはなっていません。
+Rで教師あり学習をやる場合、既存のRパッケージでは、訓練用データで学習したモデルを変数に格納して`predict`という総称関数に`new_data`と一緒につっこむことで、その他のデータに対する予測をするという使い方をすることが多いと思います。一方で、mlpackの関数はそのような建付けにはなっていません。
 
 たとえば、`mlpack::random_forest`で学習したモデルを使って予測するには、次のような雰囲気の使い方をします。
 
@@ -165,8 +152,7 @@ table(prepdata$test_labels, rf_pred$predictions)
 
 ### LMNN
 
-[ドキュメント](https://www.mlpack.org/doc/stable/r_documentation.html)によると、
-mlpackには次のような関数があります。
+[ドキュメント](https://www.mlpack.org/doc/stable/r_documentation.html)によると、mlpackには次のような関数があります。
 
 :::details mlpack 4.3.0 の関数
 - classification:
@@ -224,11 +210,9 @@ mlpackには次のような関数があります。
   - sparse_coding()
 :::
 
-めずらしいところでは、[Large Margin Nearest Neighbors (LMNN)](https://www.mlpack.org/doc/stable/r_documentation.html#lmnn)というのがあります。
-deepではないmetric learning、距離学習というやつですね。
+めずらしいところでは、[Large Margin Nearest Neighbors (LMNN)](https://www.mlpack.org/doc/stable/r_documentation.html#lmnn)というのがあります。deepではないmetric learning、距離学習というやつですね。
 
-Pythonだと[metric-learn](https://contrib.scikit-learn.org/metric-learn/)というライブラリがありますが、
-Rで距離学習ができるパッケージは他に思いつかないです。
+Pythonだと[metric-learn](https://contrib.scikit-learn.org/metric-learn/)というライブラリがありますが、Rで距離学習ができるパッケージは他に思いつかないです。
 
 `modeldata::penguins`に対して使ってみます。まず、ふつうにPCAで2次元にして可視化してみます。
 
@@ -248,8 +232,7 @@ penguins |>
 ```
 ![penguin1](https://storage.googleapis.com/zenn-user-upload/10ec34da39c4-20231208.png)
 
-オス・メスで体格が違うので、いずれの種類でもまとまりが2つに分かれています。
-次に`mlpack::lmnn`を使って、変換されたデータについて同様に可視化してみます。
+オス・メスで体格が違うので、いずれの種類でもまとまりが2つに分かれています。次に`mlpack::lmnn`を使って、変換されたデータについて同様に可視化してみます。
 
 
 ```r
@@ -273,8 +256,7 @@ ret$transformed_data |>
 
 それぞれの種類がよりはっきりと一つのまとまりになっています。
 
-ところで、LMNNよりむしろ`mlpack::pca`が扱いやすくてよいですね。他のPCAする関数とは違って、
-データにfactor型の列があってもそのままで大丈夫なようです。便利。
+ところで、LMNNよりむしろ`mlpack::pca`が扱いやすくてよいですね。他のPCAする関数とは違って、データにfactor型の列があってもそのままで大丈夫なようです。便利。
 
 
 ## 他のRパッケージとの比較
@@ -283,8 +265,7 @@ ret$transformed_data |>
 
 ### ランダムフォレスト
 
-ランダムフォレストの場合、rangerのほうが速いようです。
-また、importanceを見たりはmlpackではできません。
+ランダムフォレストの場合、rangerのほうが速いようです。また、importanceを見たりはmlpackではできません。
 
 
 ```r
@@ -363,25 +344,20 @@ microbenchmark::microbenchmark(
 #>     FNN 3.429315 3.436054 3.610419 3.692489 3.737369 3.756870     5
 ```
 
-とくに何も指定しない場合、いずれもkd木が使われます。
-与えるデータにもよるようですが、kd木ではdbscanが速そうです。
+とくに何も指定しない場合、いずれもkd木が使われます。与えるデータにもよるようですが、kd木ではdbscanが速そうです。
 
-一方で、dbscanはkd木以外の木構造は選べません。
-このなかでは`mlpack::knn`の実装が使える木構造の数がもっとも多く、ドキュメントによると、次の木構造が使えるようです。
+一方で、dbscanはkd木以外の木構造は選べません。このなかでは`mlpack::knn`の実装が使える木構造の数がもっとも多く、ドキュメントによると、次の木構造が使えるようです。
 
 > kd-trees, vp trees, random projection trees, UB trees, R trees, R* trees, X trees, Hilbert R trees, R+ trees, R++ trees, spill trees, and octrees
 
-不勉強なので、どういったデータに対してどんな木構造を使いつつ探索するとうれしいのかわからないですが、
-わかる人はいろいろできて便利なのかもしれません。
+不勉強なので、どういったデータに対してどんな木構造を使いつつ探索するとうれしいのかわからないですが、わかる人はいろいろできて便利なのかもしれません。
 
-気になった点として、`mlpack::knn`で返される近傍点は
-なぜかゼロではじまるインデックスになっているようで、正しいインデックスを得るには1を足す必要があります。
+気になった点として、`mlpack::knn`で返される近傍点はなぜかゼロではじまるインデックスになっているようで、正しいインデックスを得るには1を足す必要があります。
 
 
 ### 非負値行列因子分解（NMF）
 
-RでNMFできるパッケージとしては、NMFパッケージがあります。
-ここではCRANにあるバージョンではなく、[GitHubにある開発版](https://github.com/renozao/NMF/tree/devel)をインストールして使っています。
+RでNMFできるパッケージとしては、NMFパッケージがあります。ここではCRANにあるバージョンではなく、[GitHubにある開発版](https://github.com/renozao/NMF/tree/devel)をインストールして使っています。
 
 
 ```r
@@ -410,15 +386,11 @@ microbenchmark::microbenchmark(
 #>     20
 ```
 
-NMFは実装されているアルゴリズムが新しめなものばかりで、しかも多くのアルゴリズムが使えます。
-一方で、デフォルトで使うと妙に遅い気がします。このあたりはmlpackで代用してもよいのかなと思いました。
+NMFは実装されているアルゴリズムが新しめなものばかりで、しかも多くのアルゴリズムが使えます。一方で、デフォルトで使うと妙に遅い気がします。このあたりはmlpackで代用してもよいのかなと思いました。
 
 
 ## まとめ
 
-mlpackは一つのパッケージ内でさまざまなアルゴリズムが実装されていて便利ですが、
-他の実装と比べて必ずしも速いわけではないです。
-また、Rパッケージとしてはまだちょっとこなれていないというか、扱いづらい部分もあります。
+mlpackは一つのパッケージ内でさまざまなアルゴリズムが実装されていて便利ですが、他の実装と比べて必ずしも速いわけではないです。また、Rパッケージとしてはまだちょっとこなれていないというか、扱いづらい部分もあります。
 
-さまざまなアルゴリズムを利用するのにmlpackに一本化して乗り換えるというよりは、
-やりたいことによってはmlpackを選択肢の一つとして検討するくらいがよさそうです。
+さまざまなアルゴリズムを利用するのにmlpackに一本化して乗り換えるというよりは、やりたいことによってはmlpackを選択肢の一つとして検討するくらいがよさそうです。

@@ -92,7 +92,7 @@ ames_spec <-
 num_trees <- 500L
 ames_spec <-
   rand_forest(
-    mtry = .cols(), # こういうときはdescriptorを使う
+    mtry = .cols() - 1, # こういうときはdescriptorを使う
     trees = !!num_trees # これはインジェクションしたほうがいい
   ) |>
   set_mode("regression") |>
@@ -194,16 +194,16 @@ pred
 #> # A tibble: 733 × 2
 #>    Sale_Price .pred
 #>         <int> <dbl>
-#>  1     215000  12.1
-#>  2     105000  11.7
-#>  3     244000  12.2
-#>  4     189900  12.1
-#>  5     236500  12.5
-#>  6     180400  12.1
-#>  7     171500  12.2
-#>  8     149000  11.9
-#>  9     105500  11.5
-#> 10     306000  12.6
+#>  1     189900  12.2
+#>  2     394432  12.7
+#>  3     115000  11.6
+#>  4     149900  11.9
+#>  5     376162  12.8
+#>  6     275000  12.6
+#>  7     500000  13.1
+#>  8     175500  12.0
+#>  9     199500  12.1
+#> 10     333168  12.7
 #> # ℹ 723 more rows
 
 pred |>
@@ -212,9 +212,9 @@ pred |>
 #> # A tibble: 3 × 3
 #>   .metric .estimator .estimate
 #>   <chr>   <chr>          <dbl>
-#> 1 rmse    standard   26654.
-#> 2 rsq     standard       0.878
-#> 3 mae     standard   16397.
+#> 1 rmse    standard   24220.
+#> 2 rsq     standard       0.900
+#> 3 mae     standard   15792.
 ```
 
 これが便利なのかはやりたいことによるでしょう。いちおう、生の予測値に対するRMSEで調整しておいて、得られたハイパーパラメータをつっこむときにformulaの左辺でin-line functionsを使いながらfitするとかもできます。
@@ -280,6 +280,6 @@ fit(best_wf, kielmc) |>
 
 - parallel::detectCores()はやめよう
 - model_specに変数を与えるときはインジェクションしたほうがいいよ
-- add_model()には実はformulaを渡すことができる
+- add_model()にはformulaを渡すことができる
 
 もうすぐtidymodels本が出版されてから1年ほど経つようですが、私はあいかわらず「tidymodelsなんもわからん」という気持ちです。まあ、わからないなりになんとなくでいいと思うので、使っていきましょう。

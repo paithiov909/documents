@@ -4,7 +4,7 @@ emoji: "📒"
 type: "tech"
 topics: ["r"]
 published: true
---
+---
 
 ## はじめに
 

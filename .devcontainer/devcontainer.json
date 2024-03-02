@@ -5,10 +5,11 @@
         "args": { "VARIANT": "4" }
     },
     "features": {
+        "ghcr.io/devcontainers-contrib/features/volta:1": {},
         "ghcr.io/rocker-org/devcontainer-features/r-rig:1": {
             "version": "none",
             "installRadian": true,
-            "installVscDebugger": true
+            "installVscDebugger": false
         },
         "ghcr.io/rocker-org/devcontainer-features/r-packages:1": {
             "packages": "tidymodels,vetiver,plumber,microbenchmark,sessioninfo,reprex,gibasa",
@@ -26,6 +27,5 @@
             "label": "PlumberAPI",
             "onAutoForward": "notify"
         }
-    },
-    "postCreateCommand": "curl https://get.volta.sh | bash"
+    }
 }

@@ -20,7 +20,7 @@ published: true
 
 とりあえず、適当な日本語文字列を含むデータを用意する。`audubon::polano`は、宮沢賢治の「ポラーノの広場」という小説を段落ごとに一つの要素とした文字列ベクトル。ここでは、そのうち3つの要素だけを`tidytext::unnest_tokens()`で適当に分かち書きして、`dplyr::count()`で段落内での単語（のようなもの）の出現頻度の列をつくっている。
 
-```{r}
+```r
 dat <-
   tibble::tibble(
     doc_id = 4:6,
@@ -53,7 +53,7 @@ dat |>
 
 これを実現するためには、たとえば次のような関数を用意すればよい。
 
-```{r}
+```r
 strj_segment <- \(x, engine = c("icu", "budoux")) {
   engine <- match.arg(engine, choices = c("icu", "budoux"))
   if (engine == "budoux") {
@@ -106,7 +106,7 @@ dat |>
 
 これを「いい感じの位置」で折り返すには、ようするに「いい感じの位置」で改行されるようなHTML文字列をつくってから、`gt::md()`に渡すとよいらしい。たとえば、次のような関数を用意するとよい。
 
-```{r}
+```r
 cell_splitter <- \(x) {
   strj_segment(x) |>
     purrr::map(~

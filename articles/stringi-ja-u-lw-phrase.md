@@ -58,7 +58,7 @@ dat |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-![Rplot-1](https://storage.googleapis.com/zenn-user-upload/0e5d590350a2-20240312.png)
+![Rplot-3](https://storage.googleapis.com/zenn-user-upload/4c46b2dd1a5d-20240313.png)
 
 ここで、次のことを実現したいとする（X軸の軸ラベルもなかなか見栄えが悪いが、それはここでは無視する）。
 
@@ -66,6 +66,63 @@ dat |>
 - そもそも長すぎる文字列については、適当な字数で切り詰めてしまって、すべては表示しない
 
 これを実現するためには、たとえば次のような関数を用意すればよい。
+
+```r
+consective_id_by_cumsum <- \(x, threshold) {
+  id <- 1L
+  cum_sum <- 0
+  idx <- integer(0)
+  for (i in seq_along(x)) {
+    cum_sum <- cum_sum + x[i]
+    idx <- c(idx, id)
+    if (cum_sum >= threshold) {
+      id <- id + 1
+      cum_sum <- 0
+    }
+  }
+  idx
+}
+
+split_label <- \(x, wrap = 16, trunc = 50, collapse = "\n") {
+  pos <-
+    stringi::stri_locate_all_boundaries(
+      x,
+      opts_brkiter = stringi::stri_opts_brkiter(locale = "ja@lw=phrase;ld=auto")
+    ) |>
+    purrr::map(\(.x) {
+      ret <-
+        as.data.frame(.x) |>
+        dplyr::mutate(
+          nchar = end - start + 1,
+          id = consective_id_by_cumsum(nchar, wrap)
+        )
+      split(ret, ret[["id"]])
+    })
+
+  purrr::imap_chr(pos, \(ids, i) {
+    purrr::map_chr(ids, ~ {
+      stringi::stri_sub(
+        x[i],
+        from = head(., n = 1)[["start"]],
+        to = tail(., n = 1)[["end"]]
+      )
+    }) |>
+      paste0(collapse = collapse) |>
+      stringr::str_trunc(width = trunc)
+  })
+}
+
+facet_splitter <- \(x, wrap = 16, trunc = 50, collapse = "\n") {
+  dplyr::mutate(
+    x,
+    across(where(is.character), ~ split_label(., wrap, trunc, collapse))
+  )
+}
+```
+
+:::details 記事を投稿したときに書いたコード
+
+この下のコードだと文節区切り内であってもふつうに改行されることがあるため、上のコードに差し替えた。
 
 ```r
 strj_segment <- \(x, engine = c("icu", "budoux")) {
@@ -93,6 +150,12 @@ facet_splitter <- \(x, wrap = 21, trunc = 50, temp_char = "\u200b", collapse = "
 }
 ```
 
+この関数を下のコードブロックと同様にして使った場合、次のようなプロットになる。
+
+![Rplot-2](https://storage.googleapis.com/zenn-user-upload/55977164ef6b-20240312.png)
+
+:::
+
 `facet_splitter`を`ggplot2::facet_wrap()`の`labeller`引数に渡すと、おおむね期待したような挙動をするはず。
 
 ```r
@@ -103,7 +166,7 @@ dat |>
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
-![Rplot-2](https://storage.googleapis.com/zenn-user-upload/55977164ef6b-20240312.png)
+![Rplot-4](https://storage.googleapis.com/zenn-user-upload/076834384654-20240313.png)
 
 ## gtパッケージの表のセル内で日本語テキストを折り返す
 
@@ -121,6 +184,18 @@ dat |>
 これを「いい感じの位置」で折り返すには、ようするに「いい感じの位置」で改行されるようなHTML文字列をつくってから、`gt::md()`に渡すとよいらしい。たとえば、次のような関数を用意するとよい。
 
 ```r
+strj_segment <- \(x, engine = c("icu", "budoux")) {
+  engine <- match.arg(engine, choices = c("icu", "budoux"))
+  if (engine == "budoux") {
+    audubon::strj_segment(x)
+  } else {
+    stringi::stri_split_boundaries(
+      x,
+      opts_brkiter = stringi::stri_opts_brkiter(locale = "ja@lw=phrase;ld=auto")
+    )
+  }
+}
+
 cell_splitter <- \(x) {
   strj_segment(x) |>
     purrr::map(~

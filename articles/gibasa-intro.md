@@ -1,10 +1,9 @@
 ---
 title: "RMeCabみたいなRパッケージをCRANに投稿した話"
-emoji: '🎉'
-type: 'idea'
-topics: ['r']
+emoji: "🎉"
+type: "idea"
+topics: ["r"]
 published: true
-author: 'paithiov909'
 ---
 
 ## gibasaパッケージについて

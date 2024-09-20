@@ -11,6 +11,6 @@
   "devDependencies": {
     "textlint": "13.4.1",
     "textlint-rule-preset-smarthr": "1.28.0",
-    "zenn-cli": "0.1.151"
+    "zenn-cli": "0.1.157"
   }
 }

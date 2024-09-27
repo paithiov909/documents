@@ -1,5 +1,5 @@
 ---
-title: "そのpurrr::map()、本当に必要ですか？"
+title: "そのpurrr::map() 本当に必要ですか？"
 emoji: "📏"
 type: "idea"
 topics: ["r"]
@@ -10,9 +10,7 @@ published: false
 
 [vctrs](https://vctrs.r-lib.org/)というRパッケージがあります。`install.packages("tidyverse")`するとインストールされるパッケージの一つで、私たちが意識する必要のない部分においてではあるものの、dplyrなどの関数のなかで使われています。
 
-vctrsそのものは、おもにRパッケージの開発者が使うことを想定されているパッケージ（a
-developer-focussed
-package）です。実際、vctrsを一般のRユーザーが使う機会はほとんどないでしょうし、dplyrやpurrrの関数のように、普段づかいに便利な機能ばかり提供しているわけでもありません。
+vctrsそのものは、おもにRパッケージの開発者が使うことを想定されているパッケージ（a developer-focussed package）です。実際、vctrsを一般のRユーザーが使う機会はほとんどないでしょうし、dplyrやpurrrの関数のように、普段づかいに便利な機能ばかり提供しているわけでもありません。
 
 一方で、vctrsには一般のRユーザーでも知っていると便利だろう関数がいくつかあり、そうした関数を知っていると、特定のシーンでパフォーマンスに配慮した書き方をするのに役立ちます。この記事では、とくに`vctrs::list_sizes()`と`vctrs::vec_chop()`を取り上げ、`purrr::map()`などの関数の中でデータフレームをつくるパターンにおいて、これらの関数を使いながら書き換えできる例を紹介します。
 
@@ -20,7 +18,7 @@ package）です。実際、vctrsを一般のRユーザーが使う機会はほ�
 
 ここで考えるのは、シンプルな例では次のようなパターンです。`purrr::map_dfr()`を使えるようなパターンで、同じ構造のリストを持っていたとして、その各要素をデータフレームに詰めこんだうえで、最後に縦に結合してまとめあげたいとします。
 
-``` r
+```r
 use_map <- \(text = c("新しい朝が来た 希望の朝だ", "喜びに胸を開け 大空あおげ",
                       "ラジオの声に 健やかな胸を", "この香る風に 開けよ", "それ 一二三")) {
   stringr::str_split(text, "[^[:alnum:]]+", n = 2) |>
@@ -52,7 +50,7 @@ data.frameをつくってから一つのtibbleにまとめたい場合、`purrr:
 
 しかし、とにかく速く処理したいというだけなら、これは次のように書いたほうが速くできることがあります。
 
-``` r
+```r
 use_transpose <- \(text = c("新しい朝が来た 希望の朝だ", "喜びに胸を開け 大空あおげ",
                             "ラジオの声に 健やかな胸を", "この香る風に 開けよ", "それ 一二三")) {
   stringr::str_split(text, "[^[:alnum:]]+", n = 2) |>
@@ -77,7 +75,7 @@ use_transpose()
 
 「できることがあります」というのは、もちろん速くならないケースもあるからで、与えるデータとか処理の内容にもよるのですが、少なくともこの例では、`use_transpose()`のほうがやや速いです。
 
-``` r
+```r
 microbenchmark::microbenchmark(
   use_map(),
   use_transpose(),
@@ -100,7 +98,7 @@ microbenchmark::microbenchmark(
 
 もう少しだけ複雑な例を考えてみましょう。たとえば、次のような構造のリストを持っていたとします。
 
-``` r
+```r
 dat <-
   modeldata::tate_text |>
   dplyr::mutate(medium = as.character(medium)) |>
@@ -136,7 +134,7 @@ lists）になっています。1階層めの各リストの名前（`Absalon`,
 
 これを次のようにしてtibbleのかたちに戻すコードを、上で見たのと同じようなパターンで書き換えるにはどうすればいいでしょうか。
 
-``` r
+```r
 use_imap <- \(input) {
   purrr::imap(input, \(x, y) {
     data.frame(
@@ -197,7 +195,7 @@ use_transpose(dat)
 
 このコードのポイントは`vctrs::list_sizes()`です。この関数は、次のように、リストの中身のその階層における長さを名前付きベクトルとして返します。
 
-``` r
+```r
 vctrs::list_sizes(
   list(three = 1:3, five = 1:5, ten = 1:10, one = list(1:10), two = list("a", NA))
 )
@@ -207,7 +205,7 @@ vctrs::list_sizes(
 
 ここでは、もとのリストの名前（作者名）をそれぞれに対応するリストの長さ分だけ繰り返さないといけないため、`rep(names(input), vctrs::list_sizes(input_t$title))`として作者名の列（`name`）になるベクトルをつくっています。このデータは先ほどの例と比べるとそこそこのサイズがあるので、明らかに`use_transpose()`のほうが速くなっていることがわかると思います。
 
-``` r
+```r
 microbenchmark::microbenchmark(
   use_imap(dat),
   use_transpose(dat),
@@ -231,7 +229,7 @@ data.frameのままのかたちで返したい場合であっても、これま�
 
 これもシンプルな例ですが、この下のコードは`tolower(x$title)`の部分がグループごとに実行する必要のない処理なので、これまでの例と同様にまとめあげてから実行したほうが速くできそうです。しかし、その場合、すでにグループごとに分割されているものを一度まとめあげて処理したうえで、その結果を再度グループごとに分割することになります。それはどのように書けばいいのでしょうか。
 
-``` r
+```r
 use_map <- \(input) {
   purrr::map(input, \(x) {
     data.frame(
@@ -262,7 +260,7 @@ use_map(dat) |> head(2)
 
 たとえば、`vctrs::vec_chop()`という関数を使って、次のように書くことができます。この関数は`base::split()`と似たようなことができる関数で、`sizes`引数に各グループの長さをベクトルとして与えると、与えたデータを先頭から順にその長さにくぎった結果を返します。
 
-``` r
+```r
 use_transpose <- \(input) {
   input_t <- purrr::transpose(input)
   data.frame(
@@ -294,7 +292,7 @@ use_transpose(dat) |> head(2)
 
 ここまでこの記事を読んできていると、この`use_map()`はさすがに遅いだろうとわかりきっているような例ですが、実際、`use_transpose()`のほうが速くなることがわかります。
 
-``` r
+```r
 microbenchmark::microbenchmark(
   map = use_map(dat),
   vctrs = use_transpose(dat),
@@ -315,7 +313,7 @@ microbenchmark::microbenchmark(
 
 一方で、単純な算術計算など、それ自体のコストが小さい処理については、この記事で紹介したようなパターンで書くよりも、シンプルに`purrr::map()`のなかで繰り返してしまったほうが速いケースもあります。たとえば、次のような例です。
 
-``` r
+```r
 use_map <- \(input) {
   purrr::map(input, \(x) log(x$year)^pi) |>
     rlang::set_names(names(input))

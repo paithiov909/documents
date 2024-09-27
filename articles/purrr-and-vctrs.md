@@ -1,9 +1,9 @@
 ---
-title: "そのpurrr::map() 本当に必要ですか？"
+title: "その purrr::map() 本当に必要ですか？"
 emoji: "📏"
 type: "idea"
 topics: ["r"]
-published: false
+published: true
 ---
 
 ## この記事について

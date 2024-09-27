@@ -124,9 +124,7 @@ str(dat[1:2])
 #>   ..$ year  : num [1:6] 2004 2004 2008 2008 2008 ...
 ```
 
-このリストは[modeldata::tate_text](https://modeldata.tidymodels.org/reference/tate_text.html)から加工したもので、Tate Galleryが管理しているアート作品について、作者ごとに`title`, `medium`,
-`year`という要素をもつ名前付きリストのリスト（list of named lists）になっています。1階層めの各リストの名前（`Absalon`,
-`Abts, Tomma`…）が作者名です。
+このリストは[modeldata::tate_text](https://modeldata.tidymodels.org/reference/tate_text.html)から加工したもので、Tate Galleryが管理しているアート作品について、作者ごとに`title`, `medium`, `year`という要素をもつ名前付きリストのリスト（list of named lists）になっています。1階層めの各リストの名前（`Absalon`, `Abts, Tomma`…）が作者名です。
 
 これを次のようにしてtibbleのかたちに戻すコードを、上で見たのと同じようなパターンで書き換えるにはどうすればいいでしょうか。
 

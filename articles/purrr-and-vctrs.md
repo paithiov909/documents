@@ -160,7 +160,7 @@ use_imap(dat)
 
 これは、たとえば、次のように書くことができます。
 
-``` r
+```r
 use_transpose <- \(input) {
   input_t <- purrr::list_transpose(input)
   dplyr::tibble(

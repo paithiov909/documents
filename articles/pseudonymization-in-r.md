@@ -103,7 +103,11 @@ dplyr::mutate(cars, name = pseudonymize(name))
 ```
 
 :::details このコードについて
-`utils::hashtab()`は、R>=4.2から使えるようになっている、experimentalな関数です。いわゆる連想配列を提供します。従来のRでkey-value storeみたいなものを使いたい場合には、しばしば名前付きベクトル、リストや、環境（`new.env()`）などが代用されていましたが、ペアが多くなったときに遅かったり、[実はメモリリークする](https://r-lib.github.io/fastmap/)ことが報告されていたりと、扱いづらいものでした。`utils::hashtab()`はそのあたりの問題を解決するもので、比較的新しい[ベンチマーク](https://randy3k.github.io/collections/articles/benchmark.html#dictionary)によると、`fastmap::fastmap()`とあまり変わらないくらいのパフォーマンスを発揮するようです。
+`utils::hashtab()`は、R>=4.2から使えるようになっている、experimentalな関数です。いわゆる連想配列を提供します。
+
+従来のRでkey-value storeみたいなものを使いたい場合には、しばしば名前付きベクトル、リストや、環境（`new.env()`）などが代用されていましたが、ペアが多くなったときに遅かったり、[実はメモリリークする](https://r-lib.github.io/fastmap/)ことが報告されていたりと、扱いづらいものでした。
+
+`utils::hashtab()`はそのあたりの問題を解決するもので、比較的新しい[ベンチマーク](https://randy3k.github.io/collections/articles/benchmark.html#dictionary)によると、`fastmap::fastmap()`とあまり変わらないくらいのパフォーマンスを発揮するようです。
 :::
 
 

@@ -38,7 +38,7 @@ dplyr::mutate(cars, id = dplyr::row_number())
 
 そのため、IDは、見た目から元の順序が容易には推測できないような文字列にするべきです。実際、何かの単位にIDを与えたいというとき、私たちがやりたいことは、その単位を識別できるような名付けをおこなうことであって、番号を与えるというのはその一つのやり方にすぎません。適当な文字列によって名付けをおこなうことができるのなら、あえて番号を与える必要はないはずなのです。
 
-しかし、適当な文字列をIDとして与えるというのは、Rだとやや書きづらい処理です。もちろん、ただの行番号の代わりであれば、データフレームに含まれるレコードの数だけ適当な文字列を生成すればいいでしょう。Rでランダムな文字列を生成する方法としては、`stringi::stri_rand_strings()`のほか、[ids](https://github.com/reside-ic/ids)、[RcppUUID](https://github.com/eddelbuettel/rcppuuid), [ulid](https://github.com/eddelbuettel/ulid)などのパッケージを使うこともできますし、（IDの衝突などについて深く考えないなら）baseだけ使って次のような感じでやることもできます。
+しかし、適当な文字列をIDとして与えるというのは、Rだとやや書きづらい処理です。もちろん、ただの行番号の代わりであれば、データフレームに含まれるレコードの数だけ適当な文字列を生成すればいいでしょう。Rでランダムな文字列を生成する方法としては、`stringi::stri_rand_strings()`のほか、[ids](https://github.com/reside-ic/ids), [uuid](https://github.com/s-u/uuid), [RcppUUID](https://github.com/eddelbuettel/rcppuuid), [ulid](https://github.com/eddelbuettel/ulid)などのパッケージを使うこともできますし、（IDの衝突などについて深く考えないなら）baseだけ使って次のような感じでやることもできます。
 
 ```r
 my_rand_strings <- \(n, length) {

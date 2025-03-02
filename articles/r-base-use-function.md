@@ -126,15 +126,9 @@ R言語における環境（environment）については、HadleyのAdvanced R�
 
 つまり、`library()`というのは、`.GlobalEnv`の一つ外側に、指定したパッケージ環境を用意することに相当します。この点について、Advanced Rは次のように説明しています。
 
-> Each package attached by library() or require() becomes one of the
-> parents of the global environment. The immediate parent of the global
-> environment is the last package you attached, the parent of that
-> package is the second to last package you attached, …
+> Each package attached by library() or require() becomes one of the parents of the global environment. The immediate parent of the global environment is the last package you attached, the parent of that package is the second to last package you attached, …
 
-> If you follow all the parents back, you see the order in which every
-> package has been attached. This is known as the search path because
-> all objects in these environments can be found from the top-level
-> interactive workspace.
+> If you follow all the parents back, you see the order in which every package has been attached. This is known as the search path because all objects in these environments can be found from the top-level interactive workspace.
 
 サーチパス（search path）上にあるパッケージ環境の一覧は、`base::search()`を使って確認できます。先ほどまでのコードを実行した時点で実際に`search()`を呼んでみると、`.GlobalEnv`の直接の親環境は次のように`package:dplyr`となっています。
 

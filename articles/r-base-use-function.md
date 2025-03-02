@@ -22,8 +22,6 @@ R-4.5.0になる予定のR-develのリリースノート（になるはずのド
 
 `base::use()`のヘルプを確認すると、次のように書かれています（R-4.4.2で確認しています）。
 
-> useR DocumentationUse Packages
->
 > Description
 >
 > Use packages in R scripts by loading their namespace and attaching a

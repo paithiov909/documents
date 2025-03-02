@@ -188,8 +188,7 @@ rlang::is_attached("package:tidyr")
 
 ヘルプにはRパッケージを書くときに`@importFrom`の代わりに使えるかもみたいに書かれていますが、別にふつうの関数のなかだけにスコープを切ってアタッチできるみたいなものではないです。したがって、[box::use()](https://klmr.me/box/reference/use.html)とか[import::here()](https://import.rticulate.org/reference/importfunctions.html)とかが滅ぶわけではなさそう。そういうことがしたい場合、次の記事などをあわせて読んでみてください。
 
-- [【R】スコープを限定してパッケージをインポートする \|
-  terashim.com](https://terashim.com/posts/r-scoped-pkg-import/)
+- [【R】スコープを限定してパッケージをインポートする \| terashim.com](https://terashim.com/posts/r-scoped-pkg-import/)
 
 ## まとめ
 

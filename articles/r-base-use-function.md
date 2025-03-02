@@ -12,11 +12,10 @@ published: false
 
 R-4.5.0になる予定のR-develのリリースノート（になるはずのドキュメント）を眺めていたところ、「C23がRパッケージインストール時のデフォルトのコンパイラになる」「C++コードのコンパイル時に`-DR_NO_REMAP`が自動的に有効になる」といった情報のほかに、次のような項目が目にとまりました。
 
-> New function `use()` to use packages in R scripts with full control
-> over what gets added to the search path. (Actually already available
-> since `R 4.4.0`.)
+> New function `use()` to use packages in R scripts with full control over what gets added to the search path. (Actually already available since `R 4.4.0`.)
 
 `use()`、知らなかったですよね？
+
 たぶん、ふつうの人は気づいていなかっただろうと思います。というか、なんと、すでにリリースされているR-4.4.xでも使えるということらしいので、試しに使ってみました。
 
 ## `base::use()`による名前付きインポート
@@ -64,9 +63,7 @@ R-4.5.0になる予定のR-develのリリースノート（になるはずのド
 > This functionality is still experimental: interfaces may change in
 > future versions.
 
-「Use packages in R scripts by loading their namespace and attaching a
-package environment including (a subset of) their exports to the search
-path.」というのは、つまり「**パッケージの名前空間を読み込み、パッケージ中の一部のオブジェクトだけを含むパッケージ環境をサーチパスに追加できる**」ということだと思います。
+「Use packages in R scripts by loading their namespace and attaching a package environment including (a subset of) their exports to the search path.」というのは、つまり「**パッケージの名前空間を読み込み、パッケージ中の一部のオブジェクトだけを含むパッケージ環境をサーチパスに追加できる**」ということだと思います。
 
 この説明だけ読んでもわかりにくいですが、ようするに、たとえば次のようにすると、
 
@@ -81,9 +78,9 @@ use("dplyr", c("filter", "mutate"))
 
 dplyrパッケージが提供する関数のうち、`filter()`と`mutate()`だけを読み込むことができるということです。このような機能を一般的に何と呼ぶべきなのかよくわからないですが、ここでは、JavaScriptにおける[import](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import#import_%E5%AE%A3%E8%A8%80%E3%81%AE%E5%BD%A2)の呼び方にならって、これを「名前付きインポート」と呼ぶことにします。
 
-「名前付きインポート（名前付き
-import）」という日本語もなんだかわかりにくいですが、これは、ある名前が付けられているものをそのままその名前に束縛するみたいなことです。Pythonにおける`import numpy as np`ように、名前空間を（また別な名前の）名前空間に束縛するみたいなやつは、上のページでは「名前空間の
-import」と呼んでいます。
+:::details 名前付きインポート？？
+「名前付きインポート（名前付き import）」という日本語もなんだかわかりにくいですが、これは、ある名前が付けられているものをそのままその名前に束縛するみたいなことです。Pythonにおける`import numpy as np`ように、名前空間を（また別な名前の）名前空間に束縛するみたいなやつは、上のページでは「名前空間の import」と呼んでいます。
+:::
 
 ここでは、dplyrから`filter()`と`mutate()`だけを名前付きインポートしたので、次のように`filter()`と`mutate()`は`::`なしで呼べますが、`dplyr::select()`を意図して`select()`を呼ぼうとするとエラーになります。
 
@@ -115,25 +112,19 @@ try(select(dat, mpg))
 
 ## 解説
 
-「Use packages in R scripts by loading their namespace and attaching a
-package environment including (a subset of) their exports to the search
-path.」の意味するところについて、もう少し詳しく説明しましょう。
+「Use packages in R scripts by loading their namespace and attaching a package environment including (a subset of) their exports to the search path.」の意味するところについて、もう少し詳しく説明しましょう。
 
-R言語における環境（environment）については、HadleyのAdvanced
-Rの7章で解説されているので、よければそちらも参照してください。
+R言語における環境（environment）については、HadleyのAdvanced Rの7章で解説されているので、よければそちらも参照してください。
 
-- [7 Environments \| Advanced
-  R](https://adv-r.hadley.nz/environments.html)
+- [7 Environments \| Advanced R](https://adv-r.hadley.nz/environments.html)
 
 さて、まず、環境というのは、雑にいうと、変数が存在できる箱みたいなものです。Rで`dat <- mtcars`とかすると、`mtcars`の中身は`.GlobalEnv`という名前の環境のなかで`dat`という変数に束縛されます。
 
 私たちが`library(dplyr)`などとすると、一見、dplyrパッケージの提供する関数がまとめて手元の環境に追加されたかのように見えます。ただし、これはdplyrが提供する`filter`といった関数が`.GlobalEnv`において新たに束縛されているわけではありません。実際、私たちは`.GlobalEnv`に`filter`という名前の関数をまた別につくることができますし、そうしてつくられた関数は、dplyrのfilterよりも優先的に呼び出されます。
 
-これはなぜかというと、イメージとしては、環境が入れ子のようになっているからです。`.GlobalEnv`は入れ子のもっとも内側の環境であり、その外側には`library()`によって読み込まれたパッケージ環境（package
-environment）が取り巻いています。内側の環境に存在しない変数は、その一つ外側の親環境で探され、一つ外側の親にも存在しない変数は、そのまた一つ外側の親にあたる環境で探されます。
+これはなぜかというと、イメージとしては、環境が入れ子のようになっているからです。`.GlobalEnv`は入れ子のもっとも内側の環境であり、その外側には`library()`によって読み込まれたパッケージ環境（package environment）が取り巻いています。内側の環境に存在しない変数は、その一つ外側の親環境で探され、一つ外側の親にも存在しない変数は、そのまた一つ外側の親にあたる環境で探されます。
 
-つまり、`library()`というのは、`.GlobalEnv`の一つ外側に、指定したパッケージ環境を用意することに相当します。この点について、Advanced
-Rは次のように説明しています。
+つまり、`library()`というのは、`.GlobalEnv`の一つ外側に、指定したパッケージ環境を用意することに相当します。この点について、Advanced Rは次のように説明しています。
 
 > Each package attached by library() or require() becomes one of the
 > parents of the global environment. The immediate parent of the global
@@ -145,8 +136,7 @@ Rは次のように説明しています。
 > all objects in these environments can be found from the top-level
 > interactive workspace.
 
-サーチパス（search
-path）上にあるパッケージ環境の一覧は、`base::search()`を使って確認できます。先ほどまでのコードを実行した時点で実際に`search()`を呼んでみると、`.GlobalEnv`の直接の親環境は次のように`package:dplyr`となっています。
+サーチパス（search path）上にあるパッケージ環境の一覧は、`base::search()`を使って確認できます。先ほどまでのコードを実行した時点で実際に`search()`を呼んでみると、`.GlobalEnv`の直接の親環境は次のように`package:dplyr`となっています。
 
 ```r
 search()
@@ -158,8 +148,7 @@ search()
 
 ところで、個々のパッケージ環境の中身は、私たちがアクセスできるサーチパスとはまた別の環境から派生しています。それらはパッケージの名前空間（namespace）といいます。名前空間は、その名前空間に含まれるオブジェクトにアクセスしただけでまるごと読み込まれますが、`library()`しないかぎり、パッケージ空間がサーチパスに追加されるわけではありません。Rの話をするときには、前者の「名前空間が読み込まれる」ことをロード（load）されると表現し、後者の「パッケージ空間がサーチパス上に付け加えられる」ことを指して追加（attach）されるという言い方をします。
 
-実際に確かめてみましょう。まず、`package:dplyr`は先ほどサーチパス上にあったことからも、dplyrのパッケージ空間はすでにサーチパスに追加されています。このセッションでロードされているdplyrのパッケージ環境には`rlang::pkg_env("dplyr")`でアクセスできますが、この環境には`filter`,
-`mutate`はあっても、`select`はないことが確認できます。
+実際に確かめてみましょう。まず、`package:dplyr`は先ほどサーチパス上にあったことからも、dplyrのパッケージ空間はすでにサーチパスに追加されています。このセッションでロードされているdplyrのパッケージ環境には`rlang::pkg_env("dplyr")`でアクセスできますが、この環境には`filter`, `mutate`はあっても、`select`はないことが確認できます。
 
 ```r
 rlang::is_attached("package:dplyr")

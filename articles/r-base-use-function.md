@@ -38,10 +38,14 @@ R-4.5.0になる予定のR-develのリリースノート（になるはずのド
 >
 > package
 >
-> a character string given the name of a package. include.only
+> a character string given the name of a package.
+>
+> include.only
 >
 > character vector of names of objects to include in the attached
-> environment frame. If missing, all exports are included. Details
+> environment frame. If missing, all exports are included.
+>
+> Details
 >
 > This is a simple wrapper around library which always uses
 > attach.required = FALSE, so that packages listed in the Depends clause

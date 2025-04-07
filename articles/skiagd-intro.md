@@ -104,7 +104,7 @@ g +
 
 skiagdは、SkiaをRust向けにラップしている[skia-safe](https://github.com/rust-skia/rust-skia)というRustクレートを、[savvy](https://github.com/yutannihilation/savvy)を使いつつ、R向けにさらにラップしたものです。そもそもSkiaをRから使いたかったのですが、C++のコードを直接ラップしてしまうと、Rパッケージのビルド時にSkia本体もビルドしなければいけないのが大変そうすぎたので、prebuilt binariesを提供してくれるskia-safeを使っています。欠点として、R向けの適切なprebuilt binaryが存在しないWindows環境ではビルドできないため、Unix系の環境でしか使えません。
 
-まだ絶賛開発中ですが、基本的な図形はだいたい描けるはずです。たとえば、次のような雰囲気で使えます。
+まだ鋭意開発中ですが、基本的な図形はだいたい描けるはずです。たとえば、次のような雰囲気で使えます。
 
 ```r
 library(skiagd)

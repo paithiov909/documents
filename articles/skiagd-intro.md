@@ -2,8 +2,8 @@
 title: "Rで雑にクリエイティブコーディングしたい"
 emoji: "🌺"
 type: "idea"
-topics: ["r", "creativecoding", "p5js"]
-published: false
+topics: ["r", "creativecoding"]
+published: true
 ---
 
 ## この記事について
@@ -29,7 +29,7 @@ https://github.com/paithiov909/skiagd
 
 そこで、Rを使いたいわけです。
 
-ところで、日本では（おそらくRユーザーのあいだでも）あまり認知されていないものの、実は、R言語でジェネレティブアートをつくっている人たちもいます。とくに英語圏のRユーザーはRという文字を大文字にすることにアイデンティティを感じているので（個人の見解です）、Rを使ってつくられたジェネレティブアートには`aRt`とか`aRtsy`とかいったタグが付けられていることが多いです。
+ところで、日本では（おそらくRユーザーのあいだでも）あまり認知されていないものの、実は、R言語でジェネレティブアートをつくっている人たちもいます。とくに英語圏のRユーザーはRという文字を大文字にすることにアイデンティティを感じているので（※個人の見解です）、Rを使ってつくられたジェネレティブアートには`aRt`とか`aRtsy`とかいったタグが付けられていることが多いです。
 
 - [koenderks/aRtsy: aRtsy is an R package that implements algorithms for making generative art in a straightforward and standardized manner using ‘ggplot2’.](https://github.com/koenderks/aRtsy)
 - [Generative Art \| Nicola Rennie](https://nrennie.rbind.io/projects/generative-art/)
@@ -68,7 +68,7 @@ g <- ggplot() +
 g
 ```
 
-![](https://storage.googleapis.com/zenn-user-upload/4d21e5ff6434-20250407.png)
+![ggfxの使用例1](https://storage.googleapis.com/zenn-user-upload/4d21e5ff6434-20250407.png)
 
 その一方で、ggplot2はあくまでscientificなグラフを描くことを意図して開発されているものなので、一般的なドローイングライブラリと比べると、その書き心地はかなり異なります。たとえば、この上の例でもそうですが、とくに何も指定しないとggplot2はプロットパネルの軸ラベルといった要素を自動的に追加します。そのため、アートっぽい画像として保存したい場合、それらを消しつつ、パネルをプロットエリアいっぱいに広げたりといった調整が必要です。次のような感じですね（このスニペットは[Getting started with generative art \| Nicola Rennie](https://nrennie.rbind.io/blog/getting-started-generative-art/)で紹介されているものを借りたものです）。
 
@@ -86,11 +86,11 @@ g +
   )
 ```
 
-![](https://storage.googleapis.com/zenn-user-upload/2eec5887f0e8-20250407.png)
+![ggfxの使用例2](https://storage.googleapis.com/zenn-user-upload/2eec5887f0e8-20250407.png)
 
 だから、もっとこう「グラフというよりは画像ファイルを書き出したい！」みたいなケースでは、それ用のパッケージを新たに用意したほうが便利かなと考えました。
 
-ちなみに、R言語は、医療用画像処理などの一部の分野においても使われることがあるので、画像処理ができるパッケージはいくつかあります。
+ちなみに、R言語は、医療画像処理などの分野においても使われることがあるので、画像処理ができるパッケージはいくつかあります。
 
 - [Introduction to EBImage](https://bioconductor.org/packages/release/bioc/vignettes/EBImage/inst/doc/EBImage-introduction.html)
 - [imager: an R package for image processing](https://dahtah.github.io/imager/imager.html)
@@ -102,7 +102,7 @@ g +
 
 そんなわけで、ffmpegやその他のツールを使って画像から動画ファイルをつくることを念頭に、Rっぽい書き心地で、雑に画像（アルファチャンネル付きのPNGファイル）を書き出せる、[skiagd](https://github.com/paithiov909/skiagd)というパッケージをつくりました。
 
-skiagdは、SkiaをRust向けにラップしている[skia-safe](https://github.com/rust-skia/rust-skia)というRustクレートを、[savvy](https://github.com/yutannihilation/savvy)を使いつつ、R向けにさらにラップしたものです。そもそもSkiaをRから使いたかったのですが、C++のコードを直接ラップしてしまうと、Rパッケージのビルド時にSkia本体もビルドしなければいけないのが大変そうすぎたので、prebuilt binariesを提供してくれるskia-safeを使っています。欠点として、R向けの適切なprebuilt binaryが存在しないWindows環境ではビルドできないため、現時点ではUnix系の環境でしか使えません。
+skiagdは、SkiaをRust向けにラップしている[skia-safe](https://github.com/rust-skia/rust-skia)というRustクレートを、[savvy](https://github.com/yutannihilation/savvy)を使いつつ、R向けにさらにラップしたものです。そもそもSkiaをRから使いたかったのですが、C++のコードを直接ラップしてしまうと、Rパッケージのビルド時にSkia本体もビルドしなければいけないのが大変そうすぎたので、prebuilt binariesを提供してくれるskia-safeを使っています。欠点として、R向けの適切なprebuilt binaryが存在しないWindows環境ではビルドできないため、Unix系の環境でしか使えません。
 
 まだ絶賛開発中ですが、基本的な図形はだいたい描けるはずです。たとえば、次のような雰囲気で使えます。
 
@@ -151,13 +151,13 @@ canvas("transparent") |>
   draw_img()
 ```
 
-![](https://storage.googleapis.com/zenn-user-upload/577ca9d7fa95-20250407.png)
+![skiagdの使用例](https://storage.googleapis.com/zenn-user-upload/577ca9d7fa95-20250407.png)
 
-skiagdでは、Skiaのキャンバスのデフォルトのサイズなどは、グラフィックデバイスの設定を参照して決まりますが、画像を描く仕組みとしてはRのグラフィックデバイスとはまったく別の物なので、あくまで設定を参照するだけです。図形を描画する関数は、描画する要素の属性（位置とか、円なら半径とか）をベクトル（行列）として受け取るほか、`props`という引数に`paint()`という関数を介して設定を与えてやることで、図形の色などの属性を変更できます。
+skiagdでは、Skiaのキャンバスのデフォルトのサイズなどは、グラフィックスデバイスの設定を参照して決まりますが、画像を描く仕組みとしてはRのグラフィックスデバイスとはまったく別の物なので、あくまで設定を参照するだけです。図形を描画する関数は、描画する要素の属性（位置とか、円なら半径とか）をベクトル（行列）として受け取るほか、`props`という引数に`paint()`という関数を介して設定を与えてやることで、図形の色などの属性を変更できます。
 
 skiagdの描画関数は、Skiaの[picture](https://shopify.github.io/react-native-skia/docs/shapes/pictures/)をrawベクトルとして第一引数に取り、戻り値として新たに図形を描き加えたpictureのrawベクトルを返します。このデザインは、毎回データのコピーが発生しているので描画処理としては遅いですが、データのシリアライズをせずに雑に中間オブジェクトを使いまわせるのと、Rで多用されるパイプを使った書き方とよく馴染むので、コードの見た目がRらしくなる点で気に入っています。
 
-pictureは`draw_img()`するとRのグラフィックデバイス上にプロットできるほか、この後の例のように`as_png() |> writeBin()`することで、ふつうのPNGファイルを書き出すこともできます。
+pictureは`draw_img()`するとRのグラフィックスデバイス上にプロットできるほか、この後の例のように`as_png() |> writeBin()`することで、ふつうのPNGファイルを書き出すこともできます。
 
 ## 画像をffmpegで動画にしてみる
 
@@ -306,7 +306,7 @@ for (frame in seq_len(duration_in_frames)) {
 }
 ```
 
-ポイントとしては、skiagdでは入力に使う点群として行列を想定しているので、点群を移動したいときにはN行3列の行列を用意しておいて、アフィン行列を右からかけることによって、点群の座標をまとめて変換するみたいなことをしています。
+ポイントとしては、skiagdでは入力に使う点群として行列を想定しているので、点群を移動したいときにはn行3列の行列を用意しておいて、アフィン行列を右からかけることによって、点群の座標をまとめてアフィン変換するみたいなことをしています。
 
 こうして書き出した一連のPNGファイルについて、`ffmpeg -i pictures/%04d.png -c:v libx264 out/output.mp4`として動画にしたのが、次の動画です。
 
@@ -316,7 +316,7 @@ https://youtu.be/D49B1ACk7To
 
 ## まとめ
 
-ここでは、私が開発しているskiagdというRパッケージについて紹介しました。使い方の詳しい説明はしませんでしたが、こういうのがつくれそうというざっくりとしたイメージはもってもらえたかなと思います。
+ここでは、私が開発しているskiagdというRパッケージについて紹介しました。使い方の詳しい説明はしませんでしたが、こういうのがつくれるんだというざっくりとしたイメージはもってもらえたかなと思います。
 
 Skiaはいろいろなことができる大きなライブラリであるため、skiagdにもそれらをラップした機能をいろいろ追加していきたいと考えています。skiagd以外のパッケージとも組み合わせることで、Rでもカッコいいアニメーションをつくれるようになったらいいなと思います。
 

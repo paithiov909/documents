@@ -10,7 +10,7 @@ published: false
 
 こんにちは。趣味で動画をつくっています。というか、つくりたいと思っています。たとえば、こういう感じのをつくりました。
 
-https://www.youtube.com/watch?v=Rs6npDJ4qDY
+https://youtu.be/Rs6npDJ4qDY
 
 これはこれで気に入っているのですが、もっとこう、YouTubeで見れる「文字PV」のような、なんかカッコいいやつがつくりたいです。つまり、たぶんモーショングラフィックス的なやつをつくってみたいと思っているのですが、After Effectsに課金する勇気はないし、AviUtlはちょっと合わなくて早々に挫折しました。
 
@@ -103,7 +103,7 @@ g +
 
 そんなわけで、ffmpegやその他のツールを使って画像から動画ファイルをつくることを念頭に、Rっぽい書き心地で、雑に画像（アルファチャンネル付きのPNGファイル）を書き出せる、[skiagd](https://github.com/paithiov909/skiagd)というパッケージをつくりました。
 
-skiagdは、SkiaをRust向けにラップしている[skia-safe](https://github.com/rust-skia/rust-skia)というRustクレーとを、[savvy](https://github.com/yutannihilation/savvy)を使いつつ、R向けにさらにラップしたものです。そもそもSkiaをRから使いたかったのですが、C++のコードを直接ラップしてしまうと、Rパッケージのビルド時にSkia本体もビルドしなければいけないのが大変そうすぎたので、prebuilt binariesを提供してくれるskia-safeを使っています。欠点として、R向けの適切なprebuilt binaryが存在しないWindows環境ではビルドできないため、現時点ではUnix系の環境でしか使えません。
+skiagdは、SkiaをRust向けにラップしている[skia-safe](https://github.com/rust-skia/rust-skia)というRustクレートを、[savvy](https://github.com/yutannihilation/savvy)を使いつつ、R向けにさらにラップしたものです。そもそもSkiaをRから使いたかったのですが、C++のコードを直接ラップしてしまうと、Rパッケージのビルド時にSkia本体もビルドしなければいけないのが大変そうすぎたので、prebuilt binariesを提供してくれるskia-safeを使っています。欠点として、R向けの適切なprebuilt binaryが存在しないWindows環境ではビルドできないため、現時点ではUnix系の環境でしか使えません。
 
 まだ絶賛開発中ですが、基本的な図形はだいたい描けるはずです。たとえば、次のような雰囲気で使えます。
 

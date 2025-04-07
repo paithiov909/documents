@@ -69,8 +69,7 @@ g <- ggplot() +
 g
 ```
 
-<img src="test_files/figure-commonmark/ggfx-demo1-1.png"
-style="width:100.0%" />
+![](https://storage.googleapis.com/zenn-user-upload/4d21e5ff6434-20250407.png)
 
 その一方で、ggplot2はあくまでscientificなグラフを描くことを意図して開発されているものなので、一般的なドローイングライブラリと比べると、その書き心地はかなり異なります。たとえば、この上の例でもそうですが、とくに何も指定しないとggplot2はプロットパネルの軸ラベルといった要素を自動的に追加します。そのため、アートっぽい画像として保存したい場合、それらを消しつつ、パネルをプロットエリアいっぱいに広げたりといった調整が必要です。次のような感じですね（このスニペットは[Getting started with generative art \| Nicola Rennie](https://nrennie.rbind.io/blog/getting-started-generative-art/)で紹介されているものを借りたものです）。
 
@@ -88,8 +87,7 @@ g +
   )
 ```
 
-<img src="test_files/figure-commonmark/ggfx-demo2-1.png"
-style="width:100.0%" />
+![](https://storage.googleapis.com/zenn-user-upload/2eec5887f0e8-20250407.png)
 
 だから、もっとこう「グラフというよりは画像ファイルを書き出したい！」みたいなケースでは、それ用のパッケージを新たに用意したほうが便利かなと考えました。
 
@@ -154,8 +152,7 @@ canvas("transparent") |>
   draw_img()
 ```
 
-<img src="test_files/figure-commonmark/skiagd-demo-1.png"
-style="width:100.0%" />
+![](https://storage.googleapis.com/zenn-user-upload/577ca9d7fa95-20250407.png)
 
 skiagdでは、Skiaのキャンバスのデフォルトのサイズなどは、グラフィックデバイスの設定を参照して決まりますが、画像を描く仕組みとしてはRのグラフィックデバイスとはまったく別の物なので、あくまで設定を参照するだけです。図形を描画する関数は、描画する要素の属性（位置とか、円なら半径とか）をベクトル（行列）として受け取るほか、`props`という引数に`paint()`という関数を介して設定を与えてやることで、図形の色などの属性を変更できます。
 

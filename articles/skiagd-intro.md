@@ -29,12 +29,12 @@ https://github.com/paithiov909/skiagd
 
 そこで、Rを使いたいわけです。
 
-ところで、日本では（おそらくRユーザーのあいだでも）あまり認知されていないものの、実は、R言語でジェネレティブアートをつくっている人たちもいます。とくに英語圏のRユーザーはRという文字を大文字にすることにアイデンティティを感じているので（※個人の見解です）、Rを使ってつくられたジェネレティブアートには`aRt`とか`aRtsy`とかいったタグが付けられていることが多いです。
+ところで、日本では（おそらくRユーザーのあいだでも）あまり認知されていないものの、実は、R言語でジェネラティブアートをつくっている人たちもいます。とくに英語圏のRユーザーはRという文字を大文字にすることにアイデンティティを感じているので（※個人の見解です）、Rを使ってつくられたジェネラティブアートには`aRt`とか`aRtsy`とかいったタグが付けられていることが多いです。
 
 - [koenderks/aRtsy: aRtsy is an R package that implements algorithms for making generative art in a straightforward and standardized manner using ‘ggplot2’.](https://github.com/koenderks/aRtsy)
 - [Generative Art \| Nicola Rennie](https://nrennie.rbind.io/projects/generative-art/)
 
-こうしたR製のジェネレティブアートは、おもに[ggplot2](https://ggplot2.tidyverse.org/)を使って描かれています。ggplot2というのは、R言語の世界でデファクトスタンダードとなっているデータ可視化パッケージで、リーランド・ウィルキンソンの[The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl)を元にした統一的な書き方によって、さまざまな図を描くことができるものです。
+こうしたR製のジェネラティブアートは、おもに[ggplot2](https://ggplot2.tidyverse.org/)を使って描かれています。ggplot2というのは、R言語の世界でデファクトスタンダードとなっているデータ可視化パッケージで、リーランド・ウィルキンソンの[The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl)を元にした統一的な書き方によって、さまざまな図を描くことができるものです。
 
 Rのグラフィックスデバイスの仕様それ自体が意外とリッチなのと、拡張パッケージがたくさんあるので、たとえばこんな表現もできます（なお、この例は[ggfx](https://ggfx.data-imaginist.com/)のREADMEに載っているものです）。
 

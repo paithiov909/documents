@@ -2,7 +2,7 @@
 title: "Rで雑にクリエイティブコーディングしたい"
 emoji: "🌺"
 type: "idea"
-topics: ["r", "creativecoding"]
+topics: ["r", "creativecoding", "skia"]
 published: true
 ---
 

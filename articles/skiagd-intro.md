@@ -311,6 +311,8 @@ for (frame in seq_len(duration_in_frames)) {
 
 こうして書き出した一連のPNGファイルについて、`ffmpeg -i pictures/%04d.png -c:v libx264 out/output.mp4`として動画にしたのが、次の動画です。
 
+https://youtu.be/D49B1ACk7To
+
 ちなみに、skiagdで`as_png()`して得られるPNG画像にはアルファチャンネルが付いているので、`-vcodec qtrle -pix_fmt argb`とかすると、背景が透明な`.mov`ファイルとかを書き出せたりもします。私はもともと、映像素材をどうにかして用意しておいて、後から動画編集ソフトに持ち込んで動画にするみたいなことを想定していたので、アルファチャンネル付きの素材を雑につくれるのは便利そうかなと思っています。
 
 ## まとめ

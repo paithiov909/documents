@@ -1,8 +1,8 @@
 ---
 title: "Rで雑にクリエイティブコーディングしたい"
-emoji: "📈"
+emoji: "🌺"
 type: "idea"
-topics: ["r", "creativecoding"]
+topics: ["r", "creativecoding", "p5js"]
 published: false
 ---
 

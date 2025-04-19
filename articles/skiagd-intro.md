@@ -29,7 +29,7 @@ https://github.com/paithiov909/skiagd
 
 そこで、Rを使いたいわけです。
 
-ところで、日本では（おそらくRユーザーのあいだでも）あまり認知されていないものの、実は、R言語でジェネラティブアートをつくっている人たちもいます。とくに英語圏のRユーザーはRという文字を大文字にすることにアイデンティティを感じているので（※個人の見解です）、Rを使ってつくられたジェネラティブアートには`aRt`とか`aRtsy`とかいったタグが付けられていることが多いです。
+ところで、日本では（おそらくRユーザーのあいだでも）あまり認知されていないものの、実は、R言語でジェネラティブアートをつくっている人たちもいます。とくに英語圏のRユーザーはRという発音をもじることにアイデンティティを感じているので（※個人の見解です）、Rを使ってつくられたジェネラティブアートには`Rtistry`というタグが付けられていることが多いです。
 
 - [koenderks/aRtsy: aRtsy is an R package that implements algorithms for making generative art in a straightforward and standardized manner using ‘ggplot2’.](https://github.com/koenderks/aRtsy)
 - [Generative Art \| Nicola Rennie](https://nrennie.rbind.io/projects/generative-art/)

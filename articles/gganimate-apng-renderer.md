@@ -117,9 +117,9 @@ suppressWarnings({
 })
 ```
 
-ZennがAPNGを素直に表示してくれるのか謎ですが、雰囲気としては次のようなアニメーションが表示されます。
+雰囲気としては次のようなアニメーションが表示されます（ZennではAPNGはアップロードしたときに最初のフレームのみの静止画に変換されてしまうようだったので、ここに貼っているのはAPNGからWebPに変換したものです）。
 
-![gganimateで書き出したAPNG画像](https://storage.googleapis.com/zenn-user-upload/da432494b55c-20250521.png)
+![gganimateで書き出したアニメーション](https://storage.googleapis.com/zenn-user-upload/5452bd8ab576-20250521.webp)
 
 ちなみに、APNGはおそらく一般的な画像ビューアでは表示できませんが、主要なモダンブラウザでは問題なく表示されるはずです。RStudioのviewerペインやVSCodeなどなら、たぶんふつうに表示されます。
 

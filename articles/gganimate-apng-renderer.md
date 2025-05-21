@@ -1,9 +1,9 @@
 ---
 title: "WebRでも動くgganimateのレンダラーを書く"
-emoji: "🖼"
+emoji: "📹"
 type: "tech"
-topics: ["r"]
-published: false
+topics: ["r", "gganimate"]
+published: true
 ---
 
 
@@ -133,4 +133,4 @@ suppressWarnings({
 
 ## まとめ
 
-というか、WebPのアニメーションが書き出せるRパッケージがほしいですよね。Jeroenが[webp](https://github.com/jeroen/webp)というRパッケージをすでに作っていて、これはlibwebpにリンクしているものらしいのだけど、これはアニメーションを書き出すAPIは使えないみたい。できそうなら書いてみたいけど、C++のAPIを直に触るのは自分にはしんどそうなので悩ましいです。
+というか、WebPのアニメーションが書き出せるRパッケージがほしいですよね。Jeroenが[webp](https://github.com/jeroen/webp)というRパッケージをすでに作っていて、これはlibwebpにリンクしているものらしいのだけど、アニメーションを書き出すAPIは使えないみたい。できそうなら書いてみたいけど、C++のAPIを直に触るのは自分にはしんどそうなので悩ましいです。

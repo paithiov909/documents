@@ -13,7 +13,7 @@ published: true
 
 https://paithiov909.github.io/shiryo/magical-trail/
 
-このリンク先のWebページでは、dplyrやggplot2などを使って少しずつ変化するプロットを作成し、アニメーションさせるコードを紹介しています。ここでは、[quarto-live](https://github.com/r-wasm/quarto-live)を使ってWebRを埋め込んであるので、コードブロックを試しに実行することができるようになっています。アニメーションを題材にしたので、実際にコードを実行してみて、少しずつフレームが変化していくようすを手軽に試せるようにしたいというねらいから、こういうかたちにして公開しました。
+このリンク先のWebページでは、dplyrやggplot2などを使って少しずつ変化するプロットを作成し、アニメーションさせるコードを紹介しています。ここでは、[quarto-live](https://github.com/r-wasm/quarto-live)を使ってWebRを埋め込んであるので、コードブロックを試しに実行することができるようになっています。アニメーションを題材にしたので、実際にコードを実行してみて、少しずつフレームが変化していくようすを手軽に確認できるようにしたいというねらいから、こういうかたちにして公開しました。
 
 一方で、このWebページでは、実際にアニメーションを生成できるコードブロックは用意しませんでした。現状だと、gifskiパッケージがWebRのなかでは動かせないため、まあやめとくかと思ったのがおもな理由なのですが、実は、アニメーションを返して表示するところまでWebRのなかで完結させることも、やろうと思えばできます。衝撃的ですね。
 
@@ -51,7 +51,7 @@ apng_renderer <- function(file = NULL, loop = TRUE) {
 }
 ```
 
-`gganimate::animate()`の`rederer`に渡すレンダラーを自分で実装する場合、`frame`と`fps`をこの順に受け取る関数を返すようなfactoryとして書きます。`frames`はgganimateが書き出したフレーム画像の一時ファイルへのパス（文字列ベクトル）で、`fps`はfpsを表すnumeric scalarのようです。
+`gganimate::animate()`の`rederer`に渡すレンダラーを自分で実装する場合、`frames`と`fps`をこの順に受け取る関数を返すようなfactoryとして書きます。`frames`はgganimateが書き出したフレーム画像の一時ファイルへのパス（文字列ベクトル）で、`fps`はfpsを表すnumeric scalarのようです。
 
 gganimateのレンダラーの実装例としては、実際のgganimateのレンダラーを参考にするのが手っ取り早いです（[renderers.R](https://github.com/thomasp85/gganimate/blob/main/R/renderers.R)を見ましょう）。`file`をそのまま返すかたちにしてしまえば、上の`apng_renderer()`だけでもAPNGを書き出すという用は足りるのですが、実際のgganimateのレンダラーは、`print()`したときなどにいい感じに表示されるように工夫されていたので、それを真似するなら次のようにクラスを付けつつ、メソッドを定義するとよいでしょう。
 

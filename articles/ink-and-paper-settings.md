@@ -3,7 +3,7 @@ title: "ggplot2のinkとpaperの色は「混ざる」わけじゃないよ"
 emoji: "🧻"
 type: "idea"
 topics: ["r", "ggplot", "ggplot2"]
-published: false
+published: true
 ---
 
 ## この記事について

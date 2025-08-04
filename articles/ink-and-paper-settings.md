@@ -43,7 +43,7 @@ https://x.com/yutannihilation/status/1934077365891821783
 ```r
 library(ggplot2)
 
-ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, shape = Species)) +
   geom_point() +
   theme_gray(
     ink = "yellow",

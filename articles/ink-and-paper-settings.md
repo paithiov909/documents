@@ -6,8 +6,6 @@ topics: ["r", "ggplot", "ggplot2"]
 published: false
 ---
 
-# ggplot2のinkとpaperの色は「混ざる」わけじゃないよ
-
 ## この記事について
 
 いま、私がこの記事を書いている時点で、ggplot2のv4.0.0がとうとうリリースされようとしています。
@@ -27,7 +25,9 @@ ggplot2のv4.0.0については、内部的にS3からS7を採用するかたち
 
 > The `ink` sets all foreground elements, which by default is 'black'. Likewise, `paper` sets all background elements, which by default is 'white'.
 
-ということで、グラフを構成する要素のうち、`geom_*`で描かれるようなメインの要素（foreground）と、たぶんパネルとか軸とか凡例とか？いった背景になるべき要素（background）の色をある程度まとめて指定できるもののようです。ユタニさんがすでに試していましたが、具体的には、次の投稿みたいな雰囲気のものみたいですね。
+ということで、グラフを構成する要素のうち、`geom_*`で描かれるようなメインの要素（foreground）と、たぶんパネルとか軸とか凡例とか？いった背景になるべき要素（background）の色をある程度まとめて指定できるもののようです。
+
+ユタニさんがすでに試していましたが、具体的には、次の投稿みたいな雰囲気のものみたいですね。
 
 https://x.com/yutannihilation/status/1934077365891821783
 
@@ -63,7 +63,7 @@ panel.background = element_rect(fill = col_mix(ink, paper, 0.925), colour = NA),
 
 というように決められています。わかりにくいですが、これは`gray40`そのままではなく、ごくわずかに黄色がかっているようです。
 
-この`col_mix()`は、[scalesパッケージのこの関数](https://scales.r-lib.org/reference/col_mix.html)で、2色`a,b`と割合`amount`を与えると、任意の色空間のなかでそれらの色のあいだの補間をおこなうものです。内部的には、`farver::decode_colour()`で色空間を変換してから`new <- (a * (1 - amount) + b * amount)`のようにして線形補間してやって、できた色`new`を`farver::encode_colour()`で元の色空間に戻しています。ここで`decode_colour()`に渡される色空間は4番めの`space`引数から指定できるのですが、ggplot2のコード中では指定していないので、そのままsRGBで補間されています。
+この`col_mix()`という関数は、[scalesパッケージのこの関数](https://scales.r-lib.org/reference/col_mix.html)で、2色`a,b`と割合`amount`とを与えると、任意の色空間のなかでそれらの色のあいだの補間をおこなうものです。内部的には、`farver::decode_colour()`で色空間を変換してから`new <- (a * (1 - amount) + b * amount)`のようにして線形補間してやって、できた色`new`を`farver::encode_colour()`で元の色空間に戻しています。ここで`decode_colour()`に渡される色空間は4番めの`space`引数から指定できるのですが、ggplot2のコード中では指定していないので、そのままsRGBで補間されています。
 
 つまり、上の`panel.background`の色は、次と同じです。
 
@@ -106,7 +106,7 @@ image(1:21, 1, as.matrix(1:21), col = interp_mixbox, axes = FALSE, main = "Mixbo
 
 ![いくつかの色空間における黄～青のグラデーション](https://storage.googleapis.com/zenn-user-upload/f713333c92fd-20250805.png)
 
-farverがサポートしている色空間のうちでも、たとえばLCHなどは、黄色と青とのあいだで補間したときに中間色で緑っぽい色ができます。しかしこれも、ただこういうふうに補間される色空間であるというだけで、べつに混色しているわけではないです。
+farverがサポートしている色空間のうちでも、たとえばOklchなどは、黄色と青とのあいだで補間したときに中間色で緑っぽい色ができます。しかしこれも、ただこういうふうに補間される色空間であるというだけで、べつに混色しているわけではないです。
 
 デジタルの色について、アナログ世界の絵の具の振る舞いのような色の混ざり方を再現したい場合、[Mixbox](https://scrtwpns.com/mixbox/)のような、ガチの混色がおこなえる実装が必要になります。この上のコード例（一番下のグラデーション）で使っている[mixboxr](https://github.com/paithiov909/mixboxr)は、MixboxのC++実装を使って簡単なRパッケージとして整備したものです。
 
@@ -122,7 +122,7 @@ farverがサポートしている色空間のうちでも、たとえばLCHな�
 - どちらも極端に彩度の高い色にしすぎない
 - ある程度似たトーンや色味の組み合わせを選ぶ（たとえば、両端を補色どうしとかにはしないほうがよい）
 
-とかがポイントになるかもしれません。
+とかがポイントになるのかもしれません。
 
 
 ## まとめ

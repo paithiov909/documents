@@ -137,5 +137,5 @@ suppressWarnings({
 
 :::message
 ### 2025年9月8日 追記
-[ragg v1.5.0](https://ragg.r-lib.org/news/index.html#ragg-150)で、animatedを含むWebP画像を書き出す機能が追加され、WebPアニメーションを書き出すこと自体はR言語でも手軽にできるようになりました。ただし、`ragg::agg_webp_anim()`は、一連のプロットをインメモリで保持しておいて、閉じたタイミングでアニメーションにまとめて書き出すという仕組みのグラフィックデバイスであるため、素直にgganimateのレンダラーとして使うことができないと思われます。
+[ragg v1.5.0](https://ragg.r-lib.org/news/index.html#ragg-150)で、animatedを含むWebP画像を書き出す機能が追加され、WebPアニメーションを書き出すこと自体はR言語でも手軽にできるようになりました。ただし、`[ragg::agg_webp_anim()](https://ragg.r-lib.org/reference/agg_webp_anim.html)`は、一連のプロットをインメモリで保持しておいて、閉じたタイミングでアニメーションにまとめて書き出すという仕組みのグラフィックデバイスであるため、素直にgganimateのレンダラーとして使うことはできないと思われます。
 :::

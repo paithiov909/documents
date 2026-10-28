@@ -20,7 +20,7 @@ published: true
 
 次は、実際にWebRでアニメーションをつくってみているデモです。
 
-https://paithiov909.quarto.pub/poc-apng_renderer-for-gganimate/
+https://paithiov909.github.io/shiryo/gganimate-apng-renderer/
 
 ここでは、`apng::apng()`を使ったgganimateのレンダラー（`apng_renderer()`）を書いて、それを使ってAPNGファイルを返して表示しています。
 
